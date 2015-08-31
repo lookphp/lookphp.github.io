@@ -4,7 +4,6 @@ title:  "The first time to use TAE !"
 date:   2015-8-12 11:07:31
 categories: Cloud
 ---
-## The first time to use TAE2.0
 
 	之前总是看到网上说BAT怎么怎么样，但是我认为他们都会专注各自的擅长领域，没想到多年过后，都在为生态圈发展。你有的我也有，大家有才是真的有？
 
