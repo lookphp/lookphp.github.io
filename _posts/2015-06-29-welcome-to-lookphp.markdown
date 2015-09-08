@@ -8,7 +8,7 @@ categories: jekyll update
 
 我总结下，然后写一篇安装血泪史吧！
 
-对于jekyll还不是和了解，怎么写博客还需要继续深入！
+对于jekyll还不是很了解，怎么写博客还需要继续深入！
 
 
 
