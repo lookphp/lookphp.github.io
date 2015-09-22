@@ -7,8 +7,8 @@ categories: PHP
 
 #Learn Yii Framework-01 for newer
 
-基本概念
-一、入口文件
+基本概念  
+一、入口文件  
 入口文件内容：一般格式如下：
 
 <pre><code>
@@ -23,3 +23,111 @@ require_once($yii);//包含Yii框架
 Yii::createWebApplication($config)->run();//根据主配置文件建立应用实例，并运行。你可以在当前应用的任何位置通过Yii::app()来访问这个实例。  
 </code></pre>  
 
+
+二、主配置文件
+保存位置：你的应用/protected/config/main.php
+文件内容：一般格式如下：
+<pre><code>
+<?php
+return array(
+    'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..', //当前应用根目录的绝对物理路径
+    'name'=>'Yii Blog Demo', //当前应用的名称
+
+    // 预载入log（记录）应用组件，这表示该应用组件无论它们是否被访问都要被创建。该应用的参数配置在下面以“components”为关键字的数组中设置。
+    'preload'=>array('log'), //log为组件ID
+
+    // 自动载入的模型和组件类
+    'import'=>array(
+        'application.models.*', //载入“application/models/”文件夹下的所有模型类
+        'application.components.*', //载入“application/components/”文件夹下的所有应用组件类
+    ),
+
+    'defaultController'=>'post', //设置默认控制器类
+
+    // 当前应用的组件配置。更多可供配置的组件详见下面的“核心应用组件”
+    'components'=>array(
+        'user'=>array( //user（用户）组件配置，“user”为组件ID
+            // 可以使用基于cookie的认证
+            'allowAutoLogin'=>true, //允许自动登录
+        ),
+        'cache'=>array( //缓存组件
+                    'class'=>'CMemCache', //缓存组件类
+                    'servers'=>array( //MemCache缓存服务器配置
+                        array('host'=>'server1', 'port'=>11211, 'weight'=>60), //缓存服务器1
+                        array('host'=>'server2', 'port'=>11211, 'weight'=>40), //缓存服务器2
+                    ),
+        ),
+        'db'=>array( //db（数据库）组件配置，“db”为组件ID
+            'connectionString' => 'sqlite:protected/data/blog.db', //连接数据库的DSN字符串
+            'tablePrefix' => 'tbl_', //数据表前缀
+        ),
+        // 如果要使用一个MySQL数据库，请取消下面的注释
+        /*
+        'db'=>array(
+            'connectionString' => 'mysql:host=localhost;dbname=blog', //连接mysql数据库
+            'emulatePrepare' => true,
+            'username' => 'root', //MySQL数据库用户名
+            'password' => '', //MySQL数据库用户密码
+            'charset' => 'utf8', //MySQL数据库编码
+            'tablePrefix' => 'tbl_', //MySQL数据库表前缀
+        ),
+        */
+        'errorHandler'=>array(
+            // 使用SiteController控制器类中的actionError方法显示错误
+            'errorAction'=>'site/error', //遇到错误时，运行的操作。控制器名和方法名均小写，并用斜线“/”隔开
+        ),
+      //URL路由管理器
+        'urlManager'=>array(
+            'urlFormat'=>'path', //URL格式。 共支持两种格式：'path'格式（如：/path/to/EntryScript.php/name1/value1/name2/value2...）和'get'格式（如: /path/to/EntryScript.php?name1=value1&name2=value2...）。当使用'path'格式时，需要设置如下的规则：
+            'rules'=>array( //URL规则。语法：<参数名:正则表达式> 
+                'post/<id:\d+>/<title:.*?>'=>'post/view', //将post/12/helloword指向post/view?id=12&title=helloword
+                'posts/<tag:.*?>'=>'post/index', //将posts/hahahaha指向post/index?tag=hahahaha
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+            ),
+        ),
+        'log'=>array(  //记录
+            'class'=>'CLogRouter', //处理记录信息的类
+            'routes'=>array(
+                array(
+                    'class'=>'CFileLogRoute', //处理错误信息的类
+                    'levels'=>'error, warning', //错误等级
+                ),
+                // 如要将错误记录消息在网页上显示，取消下面的注释即可
+                /*
+                array(
+                    'class'=>'CWebLogRoute',
+                ),
+                */
+            ),
+        ),
+    ), //应用组件配置结束
+
+
+    // 使用Yii::app()->params['参数名']可以访问应用层的参数
+    'params'=>require(dirname(__FILE__).'/params.php'),
+);
+</code></pre>
+
+
+Yii的16个核心应用组件：
+Yii 预定义了一系列核心应用组件，提供常见 Web 应用中所用的功能。例如， request 组件用于解析用户请求并提供例如 URL，cookie 等信息。通过配置这些核心组件的属性，我们可以几乎任意的修改Yii 的默认行为。
+
+下面我们列出了由 CWebApplication 预定义的核心组件。
+assetManager: CAssetManager - 管理私有资源文件的发布。
+authManager: CAuthManager - 管理基于角色的访问控制 (RBAC).
+cache: CCache - 提供数据缓存功能。注意，你必须指定实际的类（例如CMemCache, CDbCache）。否则，当你访问此组件时将返回 NULL。
+clientScript: CClientScript - 管理客户端脚本 (javascripts 和 CSS).
+coreMessages: CPhpMessageSource - 提供 Yii 框架用到的核心信息的翻译。
+db: CDbConnection - 提供数据库连接。注意，使用此组件你必须配置其 connectionString 属性。
+errorHandler: CErrorHandler - 处理未捕获的 PHP 错误和异常。
+format: CFormatter - 格式化数值显示。此功能从版本 1.1.0 起开始提供。
+messages: CPhpMessageSource - 提供Yii应用中使用的信息翻译。
+request: CHttpRequest - 提供关于用户请求的信息。
+securityManager: CSecurityManager - 提供安全相关的服务，例如散列，加密。
+session: CHttpSession - 提供session相关的功能。
+statePersister: CStatePersister - 提供全局状态持久方法。
+urlManager: CUrlManager - 提供 URL 解析和创建相关功能
+user: CWebUser - 提供当前用户的识别信息。
+themeManager: CThemeManager - 管理主题。
+
+要访问一个应用组件，使用 Yii::app()->组件的ID
