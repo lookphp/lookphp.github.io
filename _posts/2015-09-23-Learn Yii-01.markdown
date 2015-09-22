@@ -1,0 +1,25 @@
+---
+layout: post
+title:  "Learn Yii-01"
+date:   2015-9-23 06:07:31
+categories: PHP
+---
+
+#Learn Yii Framework-01 for newer
+
+基本概念
+一、入口文件
+入口文件内容：一般格式如下：
+
+<pre><code>
+<?php
+$yii=dirname(__FILE__).'/../../framework/yii.php';//Yii框架位置
+$config=dirname(__FILE__).'/protected/config/main.php';//当前应用程序的主配置文件位置
+
+// 部署正式环境时，去掉下面这行
+// defined('YII_DEBUG') or define('YII_DEBUG',true);//是否运行在调试模式下
+
+require_once($yii);//包含Yii框架
+Yii::createWebApplication($config)->run();//根据主配置文件建立应用实例，并运行。你可以在当前应用的任何位置通过Yii::app()来访问这个实例。  
+</code></pre>  
+
