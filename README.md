@@ -1,7 +1,7 @@
 # lookphp.github.io
 my personal blog
 
-个人技术博客(简历)
+个人技术博客(简历)<br/>
 标签
 PHP
 ThinkPHP
