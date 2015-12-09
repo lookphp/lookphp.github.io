@@ -2,6 +2,18 @@
 my personal blog
 
 个人技术博客(简历)
+标签
+PHP
+ThinkPHP
+Yii
+MySQL
+Linux
+
+Dedecms
+Discuz
+EcShop
+PHPcms
+
 
 
 email:lookphp@163.com
