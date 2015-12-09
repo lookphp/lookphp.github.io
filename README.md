@@ -2,17 +2,17 @@
 my personal blog
 
 个人技术博客(简历)<br/>
-标签
-PHP
-ThinkPHP
-Yii
-MySQL
-Linux
+标签<br/>
+PHP<br/>
+ThinkPHP<br/>
+Yii<br/>
+MySQL<br/>
+Linux<br/><br/>
 
-Dedecms
-Discuz
-EcShop
-PHPcms
+Dedecms<br/>
+Discuz<br/>
+EcShop<br/>
+PHPcms<br/><br/>
 
 
 
