@@ -109,7 +109,7 @@ return array(
 `
 
 Yii的16个核心应用组件：
-Yii 预定义了一系列核心应用组件，提供常见 Web 应用中所用的功能。例如， request 组件用于解析用户请求并提供例如 URL，cookie 等信息。通过配置这些核心组件的属性，我们可以几乎任意的修改Yii 的默认行为。
+Yii 预定义了一系列核心应用组件，提供常见 Web 应用中所用的功能。例如， request 组件用于解析用户请求并提供例如 URL，cookie 等信息。通过配置这些核心组件的属性，我们可以几乎任意的修改Yii 的默认行为。<br/>
 
 下面我们列出了由 CWebApplication 预定义的核心组件。
 *assetManager: CAssetManager - 管理私有资源文件的发布。<br/>
