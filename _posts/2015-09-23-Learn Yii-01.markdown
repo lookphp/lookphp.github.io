@@ -112,9 +112,9 @@ Yii的16个核心应用组件：
 Yii 预定义了一系列核心应用组件，提供常见 Web 应用中所用的功能。例如， request 组件用于解析用户请求并提供例如 URL，cookie 等信息。通过配置这些核心组件的属性，我们可以几乎任意的修改Yii 的默认行为。
 
 下面我们列出了由 CWebApplication 预定义的核心组件。
-> *assetManager: CAssetManager - 管理私有资源文件的发布。<br/>
-> *authManager: CAuthManager - 管理基于角色的访问控制 (RBAC).<br/>
-> *cache: CCache - 提供数据缓存功能。注意，你必须指定实际的类（例如*CMemCache, CDbCache）。否则，当你访问此组件时将返回 NULL。<br/>
+*assetManager: CAssetManager - 管理私有资源文件的发布。<br/>
+*authManager: CAuthManager - 管理基于角色的访问控制 (RBAC).<br/>
+*cache: CCache - 提供数据缓存功能。注意，你必须指定实际的类（例如*CMemCache, CDbCache）。否则，当你访问此组件时将返回 NULL。<br/>
 *clientScript: CClientScript - 管理客户端脚本 (javascripts 和 CSS).<br/>
 *coreMessages: CPhpMessageSource - 提供 Yii 框架用到的核心信息的翻译。<br/>
 *db: CDbConnection - 提供数据库连接。注意，使用此组件你必须配置其 connectionString 属性。<br/>
