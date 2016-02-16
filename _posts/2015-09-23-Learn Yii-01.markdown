@@ -10,7 +10,7 @@ categories: PHP
 基本概念  
 一、入口文件  
 入口文件内容：一般格式如下：
-```
+`
 <?php
 $yii=dirname(__FILE__).'/../../framework/yii.php';//Yii框架位置
 $config=dirname(__FILE__).'/protected/config/main.php';//当前应用程序的主配置文件位置
@@ -20,12 +20,12 @@ $config=dirname(__FILE__).'/protected/config/main.php';//当前应用程序的�
 
 require_once($yii);//包含Yii框架
 Yii::createWebApplication($config)->run();//根据主配置文件建立应用实例，并运行。你可以在当前应用的任何位置通过Yii::app()来访问这个实例。  
-```
+`
 
 二、主配置文件
 保存位置：你的应用/protected/config/main.php
 文件内容：一般格式如下：
-```
+`
 <?php
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..', //当前应用根目录的绝对物理路径
@@ -105,7 +105,7 @@ return array(
     'params'=>require(dirname(__FILE__).'/params.php'),
 );
 ？>
-```
+`
 
 Yii的16个核心应用组件：
 Yii 预定义了一系列核心应用组件，提供常见 Web 应用中所用的功能。例如， request 组件用于解析用户请求并提供例如 URL，cookie 等信息。通过配置这些核心组件的属性，我们可以几乎任意的修改Yii 的默认行为。
