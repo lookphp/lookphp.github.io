@@ -13,13 +13,13 @@ categories: PHP
 
 
 > <?php
-> $yii=dirname(__FILE__).'/../../framework/yii.php';   //Yii框架位置
+> $yii=dirname(__FILE__).'/../../framework/yii.php';   //Yii框架位置<br/>
 > $config=dirname(__FILE__).'/protected/config/main.php';   //当前应用程序的主配置文件位置
 
-> // 部署正式环境时，去掉下面这行
+> // 部署正式环境时，去掉下面这行<br/>
 > // defined('YII_DEBUG') or define('YII_DEBUG',true);//是否运行在调试模式下
 
-> require_once($yii);//包含Yii框架
+> require_once($yii);//包含Yii框架<br/>
 > Yii::createWebApplication($config)->run();//根据主配置文件建立应用实例，并运行。你可以在当前应用的任何位置通过Yii::app()来访问这个实例。  
 
 
@@ -115,18 +115,18 @@ Yii 预定义了一系列核心应用组件，提供常见 Web 应用中所用�
 > *assetManager: CAssetManager - 管理私有资源文件的发布。<br/>
 > *authManager: CAuthManager - 管理基于角色的访问控制 (RBAC).<br/>
 > *cache: CCache - 提供数据缓存功能。注意，你必须指定实际的类（例如*CMemCache, CDbCache）。否则，当你访问此组件时将返回 NULL。<br/>
-> *clientScript: CClientScript - 管理客户端脚本 (javascripts 和 CSS).<br/>
-> *coreMessages: CPhpMessageSource - 提供 Yii 框架用到的核心信息的翻译。<br/>
-> *db: CDbConnection - 提供数据库连接。注意，使用此组件你必须配置其 connectionString 属性。<br/>
-> *errorHandler: CErrorHandler - 处理未捕获的 PHP 错误和异常。<br/>
-> *format: CFormatter - 格式化数值显示。此功能从版本 1.1.0 起开始提供。<br/>
-> *messages: CPhpMessageSource - 提供Yii应用中使用的信息翻译。<br/>
-> *request: CHttpRequest - 提供关于用户请求的信息。<br/>
-> *securityManager: CSecurityManager - 提供安全相关的服务，例如散列，加密。<br/>
-> *session: CHttpSession - 提供session相关的功能。<br/>
-> *statePersister: CStatePersister - 提供全局状态持久方法。<br/>
-> *urlManager: CUrlManager - 提供 URL 解析和创建相关功能<br/>
-> *user: CWebUser - 提供当前用户的识别信息。<br/>
-> *themeManager: CThemeManager - 管理主题。<br/>
+*clientScript: CClientScript - 管理客户端脚本 (javascripts 和 CSS).<br/>
+*coreMessages: CPhpMessageSource - 提供 Yii 框架用到的核心信息的翻译。<br/>
+*db: CDbConnection - 提供数据库连接。注意，使用此组件你必须配置其 connectionString 属性。<br/>
+*errorHandler: CErrorHandler - 处理未捕获的 PHP 错误和异常。<br/>
+*format: CFormatter - 格式化数值显示。此功能从版本 1.1.0 起开始提供。<br/>
+*messages: CPhpMessageSource - 提供Yii应用中使用的信息翻译。<br/>
+*request: CHttpRequest - 提供关于用户请求的信息。<br/>
+*securityManager: CSecurityManager - 提供安全相关的服务，例如散列，加密。<br/>
+*session: CHttpSession - 提供session相关的功能。<br/>
+*statePersister: CStatePersister - 提供全局状态持久方法。<br/>
+*urlManager: CUrlManager - 提供 URL 解析和创建相关功能<br/>
+*user: CWebUser - 提供当前用户的识别信息。<br/>
+*themeManager: CThemeManager - 管理主题。<br/>
 
 要访问一个应用组件，使用 Yii::app()->组件的ID
