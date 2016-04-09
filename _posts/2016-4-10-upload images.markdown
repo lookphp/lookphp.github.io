@@ -1,3 +1,10 @@
+---
+layout: post
+title:  "upload images"
+date:   2016-4-10 06:11:20
+categories: PHP
+---
+
 #PHP 多文件上传实例<small>以图片上传为例</small>
 
 Part 1 : html篇
