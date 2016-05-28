@@ -6,6 +6,7 @@ my personal blog
 PHP<br/>
 ThinkPHP<br/>
 Yii<br/>
+Laravel<br/>
 MySQL<br/>
 Linux<br/><br/>
 
@@ -13,6 +14,7 @@ Dedecms<br/>
 Discuz<br/>
 EcShop<br/>
 PHPcms<br/><br/>
+
 
 
 
