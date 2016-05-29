@@ -7,6 +7,7 @@ PHP<br/>
 ThinkPHP<br/>
 Yii<br/>
 Laravel<br/>
+LaravelCms<br/>
 MySQL<br/>
 Keepalived<br/>
 Linux<br/><br/>
