@@ -2,9 +2,9 @@
 layout: post
 title:  "MarkDown Tutorial"
 date:   2016-6-4 22:19:09
-categories: jekyll update
+categories: PHP
 ---
-#标题
+标题
 
 #一级标题
 ##二级标题
