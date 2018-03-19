@@ -12,3 +12,5 @@ github_username:  lookphp
 
 # Build settings
 markdown: kramdown
+
+theme: jekyll-theme-cayman
