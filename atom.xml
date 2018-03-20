@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>LookPHP</title>
-  
+  <icon>https://www.gravatar.com/avatar/4e728b1b244070a1005da09d25d0faf3</icon>
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://www.lookphp.cn/"/>
   <updated>2018-03-19T16:44:44.567Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://www.lookphp.cn/</id>
   
   <author>
     <name>lookphp</name>
-    
+    <email>lookphp@163.com</email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
     <title>Hello World1</title>
-    <link href="http://yoursite.com/2018/03/20/hello-world/"/>
-    <id>http://yoursite.com/2018/03/20/hello-world/</id>
+    <link href="http://www.lookphp.cn/2018/03/20/hello-world/"/>
+    <id>http://www.lookphp.cn/2018/03/20/hello-world/</id>
     <published>2018-03-19T16:44:44.567Z</published>
     <updated>2018-03-19T16:44:44.567Z</updated>
     
