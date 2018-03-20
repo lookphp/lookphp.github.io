@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.lookphp.cn/"/>
+  <link href="https://lookphp.github.io/"/>
   <updated>2018-03-19T16:44:44.567Z</updated>
-  <id>http://www.lookphp.cn/</id>
+  <id>https://lookphp.github.io/</id>
   
   <author>
     <name>lookphp</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World1</title>
-    <link href="http://www.lookphp.cn/2018/03/20/hello-world/"/>
-    <id>http://www.lookphp.cn/2018/03/20/hello-world/</id>
+    <link href="https://lookphp.github.io/2018/03/20/hello-world/"/>
+    <id>https://lookphp.github.io/2018/03/20/hello-world/</id>
     <published>2018-03-19T16:44:44.567Z</published>
     <updated>2018-03-19T16:44:44.567Z</updated>
     
