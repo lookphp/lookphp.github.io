@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>ElasticSearch快速入门 | LookPHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ElasticSearch">
+    <meta name="description" content="在安装 Elasticsearch 之前，请确保你的计算机已经安装了 Java。目前 Elasticsearch 的最新版是 5.2，需要安装 Java 8，如果你用的是老版本的 Elasticsearch，如 2.x 版，可用 Java 7，但还是推荐使用 Java 8。 安装前检查可以使用如下的命令检查 Java 的版本1$ java -version 接着，我们可以从这里下载最新版本的 El">
+<meta name="keywords" content="ElasticSearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ElasticSearch快速入门">
+<meta property="og:url" content="https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/index.html">
+<meta property="og:site_name" content="LookPHP">
+<meta property="og:description" content="在安装 Elasticsearch 之前，请确保你的计算机已经安装了 Java。目前 Elasticsearch 的最新版是 5.2，需要安装 Java 8，如果你用的是老版本的 Elasticsearch，如 2.x 版，可用 Java 7，但还是推荐使用 Java 8。 安装前检查可以使用如下的命令检查 Java 的版本1$ java -version 接着，我们可以从这里下载最新版本的 El">
+<meta property="og:updated_time" content="2018-03-22T15:40:45.776Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ElasticSearch快速入门">
+<meta name="twitter:description" content="在安装 Elasticsearch 之前，请确保你的计算机已经安装了 Java。目前 Elasticsearch 的最新版是 5.2，需要安装 Java 8，如果你用的是老版本的 Elasticsearch，如 2.x 版，可用 Java 7，但还是推荐使用 Java 8。 安装前检查可以使用如下的命令检查 Java 的版本1$ java -version 接着，我们可以从这里下载最新版本的 El">
+    
+        <link rel="alternate" type="application/atom+xml" title="LookPHP" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">lookphp</h5>
+          <a href="mailto:lookphp@163.com" title="lookphp@163.com" class="mail">lookphp@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.twitter.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ElasticSearch快速入门</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ElasticSearch快速入门</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-22T15:33:11.000Z" itemprop="datePublished" class="page-time">
+  2018-03-22
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装前检查"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装前检查</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#可以使用如下的命令检查-Java-的版本"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">可以使用如下的命令检查 Java 的版本</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下载完后进行解压"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">下载完后进行解压</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#运行"><span class="post-toc-number">2.</span> <span class="post-toc-text">运行</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#默认运行端口"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">默认运行端口</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#请求地址"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">请求地址</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#相关概念"><span class="post-toc-number">3.</span> <span class="post-toc-text">相关概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在逻辑层面"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">在逻辑层面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在物理层面"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">在物理层面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Relational-DB-和-Elasticsearch的区别"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">Relational DB 和 Elasticsearch的区别</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其文件目录结构如下"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">其文件目录结构如下</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTTP请求链接说明"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">HTTP请求链接说明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#被-lt-gt-标记的部件"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">被 &lt; &gt; 标记的部件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决不能以root身份运行"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">解决不能以root身份运行</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ElasticSearch快速入门"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ElasticSearch快速入门</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-22 23:33:11" datetime="2018-03-22T15:33:11.000Z"  itemprop="datePublished">2018-03-22</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在安装 Elasticsearch 之前，请确保你的计算机已经安装了 Java。目前 Elasticsearch 的最新版是 5.2，需要安装 Java 8，如果你用的是老版本的 Elasticsearch，如 2.x 版，可用 Java 7，但还是推荐使用 Java 8。</p>
+<h1 id="安装前检查"><a href="#安装前检查" class="headerlink" title="安装前检查"></a>安装前检查</h1><h2 id="可以使用如下的命令检查-Java-的版本"><a href="#可以使用如下的命令检查-Java-的版本" class="headerlink" title="可以使用如下的命令检查 Java 的版本"></a>可以使用如下的命令检查 Java 的版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -version</span><br></pre></td></tr></table></figure>
+<p>接着，我们可以从<a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.elastic.co%2Fdownloads%2Felasticsearch" target="_blank" rel="noopener">这里</a>下载最新版本的 Elasticsearch，也可使用 wget 下载，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.1.tar.gz</span><br></pre></td></tr></table></figure></p>
+<h2 id="下载完后进行解压"><a href="#下载完后进行解压" class="headerlink" title="下载完后进行解压"></a>下载完后进行解压</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar -zxvf elasticsearch-5.5.1.tar.gz</span><br></pre></td></tr></table></figure>
+<h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p><strong><em>注意：启动elasticsearch的用户不能是root。</em></strong></p>
+<p>首先，我们进入到刚刚解压出来的目录中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd elasticsearch-5.5.1</span><br></pre></td></tr></table></figure></p>
+<p>接着，使用如下命令启动 Elasticsearch：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/elasticsearch</span><br></pre></td></tr></table></figure></p>
+<p>此时，如果正常的话，你可以在终端看到类似如下的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[2017-03-04T23:25:09,961][INFO ][o.e.n.Node               ] [] initializing ...</span><br><span class="line">[2017-03-04T23:25:10,073][INFO ][o.e.e.NodeEnvironment    ] [yO11WLM] using [1] data paths, mounts [[/ (/dev/disk0s2)]], net usable_space [141.1gb], net total_space [232.9gb], spins? [unknown], types [hfs]</span><br><span class="line">[2017-03-04T23:25:10,074][INFO ][o.e.e.NodeEnvironment    ] [yO11WLM] heap size [1.9gb], compressed ordinary object pointers [true]</span><br><span class="line">[2017-03-04T23:25:10,095][INFO ][o.e.n.Node               ] node name [yO11WLM] derived from node ID [yO11WLMOQDuAOpZbYZYjzw]; set [node.name] to override</span><br><span class="line">[2017-03-04T23:25:10,100][INFO ][o.e.n.Node               ] version[5.5.1], pid[7607], build[db0d481/2017-02-09T22:05:32.386Z], OS[Mac OS X/10.11.5/x86_64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_102/25.102-b14]</span><br><span class="line">[2017-03-04T23:25:11,363][INFO ][o.e.p.PluginsService     ] [yO11WLM] loaded module [aggs-matrix-stats]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>上面的命令是在前台运行的，如果想在后台以守护进程模式运行，可以加 -d 参数。</p>
+<p>Elasticsearch 启动后，也启动了两个端口 9200 和 9300：</p>
+<ul>
+<li>9200 端口：HTTP RESTful 接口的通讯端口</li>
+<li>9300 端口：TCP 通讯端口，用于集群间节点通信和与 Java 客户端通信的端口</li>
+</ul>
+<h2 id="默认运行端口"><a href="#默认运行端口" class="headerlink" title="默认运行端口"></a>默认运行端口</h2><p>安装成功后，Elastic 就会在默认的9200端口运行。</p>
+<h2 id="请求地址"><a href="#请求地址" class="headerlink" title="请求地址"></a>请求地址</h2><p>现在，让我们做一些测试。在浏览器访问链接<a href="http://localhost:9200/，或使用" target="_blank" rel="noopener">http://localhost:9200/，或使用</a> curl 命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl &apos;http://localhost:9200/?pretty&apos;</span><br></pre></td></tr></table></figure></p>
+<p>我们可以看到类似如下的输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;MxO5-r8&quot;,</span><br><span class="line">    &quot;cluster_name&quot;: &quot;elasticsearch&quot;,</span><br><span class="line">    &quot;cluster_uuid&quot;: &quot;uQakSfM7Qi-cphDkxwRdxg&quot;,</span><br><span class="line">    &quot;version&quot;: &#123;</span><br><span class="line">        &quot;number&quot;: &quot;5.5.1&quot;,</span><br><span class="line">        &quot;build_hash&quot;: &quot;19c13d0&quot;,</span><br><span class="line">        &quot;build_date&quot;: &quot;2017-07-18T20:44:24.823Z&quot;,</span><br><span class="line">        &quot;build_snapshot&quot;: false,</span><br><span class="line">        &quot;lucene_version&quot;: &quot;6.6.0&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;tagline&quot;: &quot;You Know, for Search&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h1><p>在进一步使用 Elasticsearch 之前，让我们先了解几个关键概念。</p>
+<h2 id="在逻辑层面"><a href="#在逻辑层面" class="headerlink" title="在逻辑层面"></a>在逻辑层面</h2><ul>
+<li>Index (索引)：这里的 Index 是名词，一个 Index 就像是传统关系数据库的 - Database，它是 Elasticsearch 用来存储数据的逻辑区域。我们唯一需要做的仅仅是选择一个索引名。这个名字必须是全部小写，不能以下划线开头，不能包含逗号。</li>
+<li>Type (类型)：文档归属于一种 Type，就像是关系数据库中的一个 Table</li>
+<li>Document (文档)：Elasticsearch 使用 JSON 文档来表示一个对象，就像是关系数据库中一个 Table 中的一行数据</li>
+<li>Field (字段)：每个文档包含多个字段，类似关系数据库中一个 Table 的列</li>
+</ul>
+<h2 id="在物理层面"><a href="#在物理层面" class="headerlink" title="在物理层面"></a>在物理层面</h2><ul>
+<li>Node (节点)：node 是一个运行着的 Elasticsearch 实例，一个 node 就是一个单独的 server</li>
+<li>Cluster (集群)：cluster 是多个 node 的集合</li>
+<li>Shard (分片)：数据分片，一个 index 可能会存在于多个 shard</li>
+</ul>
+<h2 id="Relational-DB-和-Elasticsearch的区别"><a href="#Relational-DB-和-Elasticsearch的区别" class="headerlink" title="Relational DB 和 Elasticsearch的区别"></a>Relational DB 和 Elasticsearch的区别</h2><p>在ElasticSearch中，我们常常会听到Index、Type以及Document等概念，那么它们与传统的熟知的关系型数据库中名称的类比如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Mysql</th>
+<th>Elasticsearch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Database（数据库）</td>
+<td>Index（索引）</td>
+</tr>
+<tr>
+<td style="text-align:left">Table（表）</td>
+<td>Type（类型）</td>
+</tr>
+<tr>
+<td style="text-align:left">Row（行）</td>
+<td>Document（文档）</td>
+</tr>
+<tr>
+<td style="text-align:left">Column（列）</td>
+<td>Field（字段）</td>
+</tr>
+<tr>
+<td style="text-align:left">Schema（表设计）</td>
+<td>Mapping（映射）</td>
+</tr>
+<tr>
+<td style="text-align:left">Index（索引）</td>
+<td>Everything Indexed by default（所有字段都被索引）</td>
+</tr>
+<tr>
+<td style="text-align:left">SQL（结构化查询语言）</td>
+<td>Query DSL（查询专用语言）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="其文件目录结构如下"><a href="#其文件目录结构如下" class="headerlink" title="其文件目录结构如下"></a>其文件目录结构如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">elasticsearch---这是Elasticsearch解压的目录</span><br><span class="line">　　bin---这里面是ES启动的脚本</span><br><span class="line"></span><br><span class="line">　　conf---elasticsearch.yml为ES的配置文件</span><br><span class="line"></span><br><span class="line">　　data---这里是ES得当前节点的分片的数据，可以直接拷贝到其他的节点进行使用</span><br><span class="line"></span><br><span class="line">　　logs---日志文件</span><br><span class="line"></span><br><span class="line">　　plugins---这里存放一些常用的插件，如果有一切额外的插件，可以放在这里使用。</span><br></pre></td></tr></table></figure>
+<h2 id="HTTP请求链接说明"><a href="#HTTP请求链接说明" class="headerlink" title="HTTP请求链接说明"></a>HTTP请求链接说明</h2><p>一个 Elasticsearch 请求和任何 HTTP 请求一样由若干相同的部件组成：</p>
+<blockquote>
+<p>curl -X<verb> ‘<protocol>://<host>:<port>/<path></path>?&lt;QUERY_STRING&gt;’ -d ‘<body>‘</body></port></host></protocol></verb></p>
+</blockquote>
+<h2 id="被-lt-gt-标记的部件"><a href="#被-lt-gt-标记的部件" class="headerlink" title="被 &lt; &gt; 标记的部件"></a>被 <code>&lt; &gt;</code> 标记的部件</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">VERB</td>
+<td>适当的 HTTP _方法_ 或 _谓词_ : <code>GET</code>、 <code>POST</code>、 <code>PUT</code>、 <code>HEAD</code> 或者 <code>DELETE</code>。</td>
+</tr>
+<tr>
+<td style="text-align:left">PROTOCOL</td>
+<td><code>http</code> 或者 <code>https</code>（如果你在 Elasticsearch 前面有一个 <code>https</code> 代理）</td>
+</tr>
+<tr>
+<td style="text-align:left">HOST</td>
+<td>Elasticsearch 集群中任意节点的主机名，或者用 +localhost+ 代表本地机器上的节点。</td>
+</tr>
+<tr>
+<td style="text-align:left">PORT</td>
+<td>运行 Elasticsearch HTTP 服务的端口号，默认是 <code>9200</code> 。</td>
+</tr>
+<tr>
+<td style="text-align:left">PATH</td>
+<td>API 的终端路径（例如 <code>_count</code> 将返回集群中文档数量）。Path 可能包含多个组件，例如：<code>_cluster/stats</code> 和 <code>_nodes/stats/jvm</code> 。</td>
+</tr>
+<tr>
+<td style="text-align:left">QUERY_STRING</td>
+<td>任意可选的查询字符串参数 (例如 <code>?pretty</code> 将格式化地输出 JSON 返回值，使其更容易阅读)</td>
+</tr>
+<tr>
+<td style="text-align:left">BODY</td>
+<td>一个 JSON 格式的请求体 (如果请求需要的话)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="解决不能以root身份运行"><a href="#解决不能以root身份运行" class="headerlink" title="解决不能以root身份运行"></a>解决不能以root身份运行</h2><p>在ElasticSearch 2.x版本中，默认是不允许以Root用户身份运行实例，可以使用bin/elasticsearch -Des.insecure.allow.root=true来以Root身份启动集群，此外还可以使用bin/elasticsearch -f -Des.path.conf=/path/to/config/dir参数来读取相关的.yml或者.json配置。</p>
+<p><strong>Restful API</strong></p>
+<p>参考文档：<br><a href="https://juejin.im/entry/57e222528ac24700617b8c78" target="_blank" rel="noopener">https://juejin.im/entry/57e222528ac24700617b8c78</a><br><a href="https://imququ.com/post/elasticsearch.html" target="_blank" rel="noopener">https://imququ.com/post/elasticsearch.html</a><br><a href="http://blog.csdn.net/lvhong84/article/details/23936697" target="_blank" rel="noopener">http://blog.csdn.net/lvhong84/article/details/23936697</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-03-22T15:40:45.776Z" itemprop="dateUpdated">2018-03-22 23:40:45</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/03/22/ElasticSearch快速入门/" target="_blank" rel="external">https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://lookphp.github.io">
+            <img src="/img/avatar.jpg" alt="lookphp">
+            lookphp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/&title=《ElasticSearch快速入门》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/&title=《ElasticSearch快速入门》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ElasticSearch快速入门》 — LookPHP&url=https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/22/使用hexo搭建博客教程/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用hexo搭建博客教程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpeg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpeg" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>lookphp &copy; 2014 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/&title=《ElasticSearch快速入门》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/&title=《ElasticSearch快速入门》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ElasticSearch快速入门》 — LookPHP&url=https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/03/22/ElasticSearch快速入门/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3aMXJCMQwFQO5/6aRJkRkG50myCMVSMR/H3+vCViQ9HvHn69fn95PnX59HPs9z/l6d88IHDw8Pb7D0V9Odn/Rg5yfJdkRvx8PDw1vjVQ/xCaY3/nyRvHyOh4eH9zG8PPjOo9xeQI+Hh4f3+bzz9XAemfxtHuLj4eHh/S8vn66XOJiE6aNUCB4eHt4CL68ifc73lfoeHh4e3riqPglne8WzW+v8mQ0PDw9vgZcfuHnRq7c11Zavwkg8PDy8BV611JQ8mR/rt1IheHh4eHd5eVlr8l9/eY/jrYyuATw8PLw1Xl52yktW1QUlvxaat/Dw8PAWeL2h5URq71gvXhjNuwsPDw+vxZskXvMyf6+EVi2k4eHh4W3zzqRJu0BeQqu+PQ+48fDw8DZ4+XGcFJ/yNG51iZOkCR4eHt5dXjWVkCdVeyH7rcaC8q7j4eHhdSLSx61XzkPzato3egseHh7eVd455ZqkEqoFrd5mNS8zPDw8vDVeL4SdtFj1krYXymB4eHh4V3mTtqfqPMmxfr4eovF4eHh4V3n51L1wubcR1bTIy83Cw8PDW+BVMUmitrrcScNW1HSFh4eHd5XXS5jmKeDqZlU36I958PDw8BZ4k3B2D1DNphQuKjw8PLwFXhUzaRfI56w2LuDh4eFt824V+PMl9oLyZkiNh4eHt8abF7TylEQvcK9uJR4eHt57eNWifm8R1XB8lMjAw8PDu8rrLaIaBOdRbrJ9ebkODw8Pb4NXPXx7aYJJGvd88UTdZHh4eHgLvPllMNmmeRms3FmGh4eHd4k3acCaFLHywlg1QMfDw8P7TN4k1ZukYqvjC/U9PDw8vDfyqmnTeStA70LCw8PD2+bliYBq1JoXpaqp3ugteHh4eAu86j/8eTibXy2XExB4eHh4W7xvsZiSlzYNHzEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

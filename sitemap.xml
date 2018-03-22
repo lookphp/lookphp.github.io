@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lookphp.github.io/2018/03/22/ElasticSearch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</loc>
+    
+    <lastmod>2018-03-22T15:40:45.776Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lookphp.github.io/2018/03/22/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/</loc>
+    
+    <lastmod>2018-03-22T15:31:14.886Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lookphp.github.io/2018/03/20/hello-world/</loc>
     
     <lastmod>2018-03-20T15:29:38.066Z</lastmod>
