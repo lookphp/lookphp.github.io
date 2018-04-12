@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Vultr VPS搭建SS教程 | LookPHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ss,vps">
+    <meta name="description" content="Vultr VPS搭建SS教程 本系列文章自由转载，注明原文地址即可。  国外服务器的购买这里我选择的是Vultr，对比了很多国外的服务器，这个蛮靠谱的，且搭建成功后看youtube1080p完全无压力。 这里是链接：Vultr The Infrastructure Cloud™ 当然，已经有服务器的小伙伴，直接从==快速搭建ShadowSocks==开始看 Vultr服务器价格Vultr服务器按">
+<meta name="keywords" content="ss,vps">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vultr VPS搭建SS教程">
+<meta property="og:url" content="https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/index.html">
+<meta property="og:site_name" content="LookPHP">
+<meta property="og:description" content="Vultr VPS搭建SS教程 本系列文章自由转载，注明原文地址即可。  国外服务器的购买这里我选择的是Vultr，对比了很多国外的服务器，这个蛮靠谱的，且搭建成功后看youtube1080p完全无压力。 这里是链接：Vultr The Infrastructure Cloud™ 当然，已经有服务器的小伙伴，直接从==快速搭建ShadowSocks==开始看 Vultr服务器价格Vultr服务器按">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-b0ee2070ab1c70a0?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-25b9b2fa2e722a03?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-4d9bb7d1e7e71e61?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-3ff5b03d8ba9ce1b?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-456db084bba8b5b7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-a02e3dc3e9600357?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-f377022df2f8593e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-9fcddad1fa1f4f2c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-13d8d9431aa93dfc?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-ce9524cdb93bf9a8?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-0371c482e45b279e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-7dfe897ae67c9913?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-9263ff3c7b1dc257?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-24265715369429c4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-4866459e2bb83a43?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-bc6e9b2061fbb519?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-f4f36624df9646e2?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-7fd3edb2e067f981?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-1c5bc0a6519b34b4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-f4a5cf1ae3cdd8a6?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-79162e5e39322c2a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-6ac3a3e22551fe11?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-4664fd091cd40fb9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-d9803a1641626698?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-1e0c2b77b435c4f6?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-bddee0a478732369?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-7b774c9018ea5f04?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-51cbe21b01eb1739?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-6aff0363b7c685fa?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-53af28cdee91182c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-bc4e68f14b3efc7b?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-d55d2f90b2ff2efe?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-2e0e89620cd7dd90?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-845cd2e94c0a6d8c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-04-12T14:53:47.821Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vultr VPS搭建SS教程">
+<meta name="twitter:description" content="Vultr VPS搭建SS教程 本系列文章自由转载，注明原文地址即可。  国外服务器的购买这里我选择的是Vultr，对比了很多国外的服务器，这个蛮靠谱的，且搭建成功后看youtube1080p完全无压力。 这里是链接：Vultr The Infrastructure Cloud™ 当然，已经有服务器的小伙伴，直接从==快速搭建ShadowSocks==开始看 Vultr服务器价格Vultr服务器按">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1463937-b0ee2070ab1c70a0?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="LookPHP" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">lookphp</h5>
+          <a href="mailto:lookphp@163.com" title="lookphp@163.com" class="mail">lookphp@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.twitter.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vultr VPS搭建SS教程</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Vultr VPS搭建SS教程</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-12T14:46:09.000Z" itemprop="datePublished" class="page-time">
+  2018-04-12
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Vultr-VPS搭建SS教程"><span class="post-toc-number">1.</span> <span class="post-toc-text">Vultr VPS搭建SS教程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#国外服务器的购买"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">国外服务器的购买</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Vultr服务器价格"><span class="post-toc-number">1.0.1.1.</span> <span class="post-toc-text">Vultr服务器价格</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注册Vultr"><span class="post-toc-number">1.0.1.2.</span> <span class="post-toc-text">注册Vultr</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#充值Vultr"><span class="post-toc-number">1.0.1.3.</span> <span class="post-toc-text">充值Vultr</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#"><span class="post-toc-number">1.0.1.4.</span> <span class="post-toc-text">
+                
+                    
+                    
+                
+                image
+            </span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#选择VPS的位置"><span class="post-toc-number">1.0.1.5.</span> <span class="post-toc-text">选择VPS的位置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建VPS"><span class="post-toc-number">1.0.1.6.</span> <span class="post-toc-text">创建VPS</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#VPS的信息"><span class="post-toc-number">1.0.1.7.</span> <span class="post-toc-text">VPS的信息</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#VPS的使用"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">VPS的使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#下载Shell"><span class="post-toc-number">1.0.2.1.</span> <span class="post-toc-text">下载Shell</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#连接VPS"><span class="post-toc-number">1.0.2.2.</span> <span class="post-toc-text">连接VPS</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#快速搭建ShadowSocks-二选一"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">快速搭建ShadowSocks(二选一)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一键安装"><span class="post-toc-number">1.0.3.1.</span> <span class="post-toc-text">一键安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#使用方法"><span class="post-toc-number">1.0.3.1.1.</span> <span class="post-toc-text">使用方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#手动安装"><span class="post-toc-number">1.0.3.2.</span> <span class="post-toc-text">手动安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装依赖包"><span class="post-toc-number">1.0.3.2.1.</span> <span class="post-toc-text">安装依赖包</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装ShadowSocks"><span class="post-toc-number">1.0.3.2.2.</span> <span class="post-toc-text">安装ShadowSocks</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#创建ShadowSocks配置文件"><span class="post-toc-number">1.0.3.2.3.</span> <span class="post-toc-text">创建ShadowSocks配置文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#单端口"><span class="post-toc-number">1.0.3.2.3.1.</span> <span class="post-toc-text">单端口</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#多端口"><span class="post-toc-number">1.0.3.2.3.2.</span> <span class="post-toc-text">多端口</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#配置防火墙"><span class="post-toc-number">1.0.3.2.4.</span> <span class="post-toc-text">配置防火墙</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#启动ShadowSocks服务"><span class="post-toc-number">1.0.3.2.5.</span> <span class="post-toc-text">启动ShadowSocks服务</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#关闭ShadowSocks服务"><span class="post-toc-number">1.0.3.2.6.</span> <span class="post-toc-text">关闭ShadowSocks服务</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#连接ShadowSocks，体会科学上网的魅力"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">连接ShadowSocks，体会科学上网的魅力</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Windows客户端"><span class="post-toc-number">1.0.4.1.</span> <span class="post-toc-text">Windows客户端</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安卓连接"><span class="post-toc-number">1.0.4.2.</span> <span class="post-toc-text">安卓连接</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IOS连接"><span class="post-toc-number">1.0.4.3.</span> <span class="post-toc-text">IOS连接</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#MAC-连接"><span class="post-toc-number">1.0.4.4.</span> <span class="post-toc-text">MAC 连接</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#测试结果"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">测试结果</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写在后面的话"><span class="post-toc-number">1.0.6.</span> <span class="post-toc-text">写在后面的话</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Vultr-VPS搭建SS教程"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Vultr VPS搭建SS教程</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-12 22:46:09" datetime="2018-04-12T14:46:09.000Z"  itemprop="datePublished">2018-04-12</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Vultr-VPS搭建SS教程"><a href="#Vultr-VPS搭建SS教程" class="headerlink" title="Vultr VPS搭建SS教程"></a>Vultr VPS搭建SS教程</h1><blockquote>
+<p>本系列文章自由转载，注明原文地址即可。</p>
+</blockquote>
+<h3 id="国外服务器的购买"><a href="#国外服务器的购买" class="headerlink" title="国外服务器的购买"></a>国外服务器的购买</h3><p>这里我选择的是Vultr，对比了很多国外的服务器，这个蛮靠谱的，且搭建成功后看youtube1080p完全无压力。</p>
+<p>这里是链接：<a href="https://www.vultr.com/?ref=7391746" target="_blank" rel="noopener">Vultr The Infrastructure Cloud™</a></p>
+<p>当然，已经有服务器的小伙伴，直接从==快速搭建ShadowSocks==开始看</p>
+<h4 id="Vultr服务器价格"><a href="#Vultr服务器价格" class="headerlink" title="Vultr服务器价格"></a>Vultr服务器价格</h4><p>Vultr服务器按小时计费,最低0.004美元/h,算起来2.5美元/月，且destory掉服务器是不收费的，所以不用担心如果暂时没有使用还一直扣费的问题，如下图所示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-b0ee2070ab1c70a0?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>最低价格的服务器是512M的内存，500G的带宽，只能说99%的情况下完全够用了！</p>
+<h4 id="注册Vultr"><a href="#注册Vultr" class="headerlink" title="注册Vultr"></a>注册Vultr</h4><p>首先打开<a href="https://www.vultr.com/?ref=7391746" target="_blank" rel="noopener">Vultr链接</a>，点击Create Account</p>
+<h4 id="充值Vultr"><a href="#充值Vultr" class="headerlink" title="充值Vultr"></a>充值Vultr</h4><h4 id=""><a href="#" class="headerlink" title=""></a><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-25b9b2fa2e722a03?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure></h4><p>注册完成之后就是充值，Vultr提供4种充值方式，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-4d9bb7d1e7e71e61?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>这里我选择支付宝，因为方便快捷，但是最低消费10美元，也不多，60多人民币，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-3ff5b03d8ba9ce1b?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>付款之后，就可以看到账户的钱多了</p>
+<h4 id="选择VPS的位置"><a href="#选择VPS的位置" class="headerlink" title="选择VPS的位置"></a>选择VPS的位置</h4><p>首先，位置很重要！我们如何选择呢，当然有科学的办法，ping它！</p>
+<p>Vultr的服务器有很多位置，下面我测试的东京节点和新加坡节点的数据如下：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-456db084bba8b5b7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-a02e3dc3e9600357?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>这么看来还是东京的节点速度比较好，当然这个因人而异，在中国不同的地理位置访问国外不同位置的服务器速度也不一样。（下面提供了下载地址,下载下来双击运行即可）。</p>
+<p>测速脚本下载地址：<br><a href="https://link.jianshu.com/?t=http%3A%2F%2Fp1hy9syru.bkt.clouddn.com%2F%25E6%25B5%258B%25E9%2580%259F.bat" target="_blank" rel="noopener">点我下载 测速.bat</a></p>
+<p>脚本内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@echo off</span><br><span class="line">echo ===========================================</span><br><span class="line">echo 东京</span><br><span class="line">ping hnd-jp-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ============================================</span><br><span class="line">echo 新加坡</span><br><span class="line">ping sgp-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo (AU) Sydney, Australia[悉尼]</span><br><span class="line">ping syd-au-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 德国 法兰克福</span><br><span class="line">ping fra-de-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 荷兰 阿姆斯特丹</span><br><span class="line">ping ams-nl-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 英国 伦敦</span><br><span class="line">ping lon-gb-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 法国 巴黎</span><br><span class="line">ping par-fr-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 美东 华盛顿州 西雅图</span><br><span class="line">ping wa-us-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 美西 加州 硅谷</span><br><span class="line">ping sjo-ca-us-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 美西 加州 洛杉矶</span><br><span class="line">ping lax-ca-us-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 美东 芝加哥</span><br><span class="line">Chicago, Illinois[美东 芝加哥]</span><br><span class="line">ping il-us-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 美中 德克萨斯州 达拉斯</span><br><span class="line">ping tx-us-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 美东 新泽西</span><br><span class="line">ping nj-us-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 美东 乔治亚州 亚特兰大</span><br><span class="line">ping ga-us-ping.vultr.com</span><br><span class="line"></span><br><span class="line">echo ===========================================</span><br><span class="line">echo 美东 佛罗里达州 迈阿密</span><br><span class="line">ping fl-us-ping.vultr.com   </span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+<p>根据测速的结果，我选择东京位置的VPS</p>
+<h4 id="创建VPS"><a href="#创建VPS" class="headerlink" title="创建VPS"></a>创建VPS</h4><p>左侧菜单栏Servers，点击+，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-f377022df2f8593e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>选择VPS的位置，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-9fcddad1fa1f4f2c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>选择操作系统和价格，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-13d8d9431aa93dfc?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>点击最下面的Deploy Now，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-ce9524cdb93bf9a8?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>创建成功</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-0371c482e45b279e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h4 id="VPS的信息"><a href="#VPS的信息" class="headerlink" title="VPS的信息"></a>VPS的信息</h4><p>安装成功之后，点击Manage</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-7dfe897ae67c9913?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>可以看到你购买的VPS的信息，如下图所示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-9263ff3c7b1dc257?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>ping一下ip地址，100ms多一点，这个速度相当可以了，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-24265715369429c4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h3 id="VPS的使用"><a href="#VPS的使用" class="headerlink" title="VPS的使用"></a>VPS的使用</h3><h4 id="下载Shell"><a href="#下载Shell" class="headerlink" title="下载Shell"></a>下载Shell</h4><p>当然是选择先连接它了，我们选择的工具是XShell</p>
+<p>下载地址：<a href="https://link.jianshu.com/?t=http%3A%2F%2Fp1hy9syru.bkt.clouddn.com%2FXshell5.zip" target="_blank" rel="noopener">Xshell下载</a></p>
+<p>下载完成之后安装，下一步即可</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-4866459e2bb83a43?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>接着选择免费为家庭/学校</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-bc6e9b2061fbb519?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>语言选择中文：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-f4f36624df9646e2?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>安装成功后打开</p>
+<h4 id="连接VPS"><a href="#连接VPS" class="headerlink" title="连接VPS"></a>连接VPS</h4><p>打开Xshell，选择文件-&gt;新建，输入VPS的IP，IP地址就在Vultr的管理页面上，如下图所示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-7fd3edb2e067f981?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>点击确定，输入用户名，默认应该为root，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-1c5bc0a6519b34b4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>接着输入密码：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-f4a5cf1ae3cdd8a6?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>连接成功：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-79162e5e39322c2a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h3 id="快速搭建ShadowSocks-二选一"><a href="#快速搭建ShadowSocks-二选一" class="headerlink" title="快速搭建ShadowSocks(二选一)"></a>快速搭建ShadowSocks(二选一)</h3><h4 id="一键安装"><a href="#一键安装" class="headerlink" title="一键安装"></a>一键安装</h4><h5 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h5><p>在Xshell中依次运行以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</span><br><span class="line"></span><br><span class="line">chmod +x shadowsocks.sh</span><br><span class="line"></span><br><span class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</span><br></pre></td></tr></table></figure>
+<p>接着按照提醒输入你的密码，端口和加密方式，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-6ac3a3e22551fe11?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-4664fd091cd40fb9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>然后可以去听首歌~，成功安装之后有你配置的信息显示，记住这些信息，然后跳过下面的手动安装部分，直接去看客户端连接部分即可，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-d9803a1641626698?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<blockquote>
+<p>以上脚本来源于秋水逸冰</p>
+</blockquote>
+<h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><h5 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h5><p>在XShell的控制台输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl &quot;https://bootstrap.pypa.io/get-pip.py&quot; -o &quot;get-pip.py&quot;</span><br><span class="line">python get-pip.py</span><br></pre></td></tr></table></figure>
+<p>一个个的来，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-1e0c2b77b435c4f6?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h5 id="安装ShadowSocks"><a href="#安装ShadowSocks" class="headerlink" title="安装ShadowSocks"></a>安装ShadowSocks</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade pip</span><br><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure>
+<p>如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-bddee0a478732369?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h5 id="创建ShadowSocks配置文件"><a href="#创建ShadowSocks配置文件" class="headerlink" title="创建ShadowSocks配置文件"></a>创建ShadowSocks配置文件</h5><h6 id="单端口"><a href="#单端口" class="headerlink" title="单端口"></a>单端口</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/shadowsocks.json</span><br></pre></td></tr></table></figure>
+<p>输入以下内容，然后点ESC后输入:wq保存退出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;server&quot;: &quot;0.0.0.0&quot;,</span><br><span class="line">  &quot;server_port&quot;: 2018,</span><br><span class="line">  &quot;password&quot;: &quot;12345678&quot;,</span><br><span class="line">  &quot;method&quot;: &quot;aes-256-cfb&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="多端口"><a href="#多端口" class="headerlink" title="多端口"></a>多端口</h6><p>（可选，配置了单端口就不要配置这个）多端口的配置文件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;: &quot;0.0.0.0&quot;,</span><br><span class="line">    &quot;port_password&quot;: &#123;</span><br><span class="line">        &quot;8381&quot;: &quot;password1&quot;,</span><br><span class="line">        &quot;8382&quot;: &quot;password2&quot;,</span><br><span class="line">        &quot;8383&quot;: &quot;password3&quot;,</span><br><span class="line">        &quot;8384&quot;: &quot;password4&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;timeout&quot;: 300,</span><br><span class="line">    &quot;method&quot;: &quot;aes-256-cfb&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我采取的是单端口配置，如下图所示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-7b774c9018ea5f04?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-51cbe21b01eb1739?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h5 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-6aff0363b7c685fa?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h5 id="启动ShadowSocks服务"><a href="#启动ShadowSocks服务" class="headerlink" title="启动ShadowSocks服务"></a>启动ShadowSocks服务</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssserver -c /etc/shadowsocks.json -d start</span><br></pre></td></tr></table></figure>
+<p>如图所示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-53af28cdee91182c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>下面的是关闭，启动成功之后不要执行</p>
+<h5 id="关闭ShadowSocks服务"><a href="#关闭ShadowSocks服务" class="headerlink" title="关闭ShadowSocks服务"></a>关闭ShadowSocks服务</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssserver -c /etc/shadowsocks.json -d stop</span><br></pre></td></tr></table></figure>
+<h3 id="连接ShadowSocks，体会科学上网的魅力"><a href="#连接ShadowSocks，体会科学上网的魅力" class="headerlink" title="连接ShadowSocks，体会科学上网的魅力"></a>连接ShadowSocks，体会科学上网的魅力</h3><h4 id="Windows客户端"><a href="#Windows客户端" class="headerlink" title="Windows客户端"></a>Windows客户端</h4><p>下载地址：<br><a href="https://link.jianshu.com/?t=http%3A%2F%2Fp1hy9syru.bkt.clouddn.com%2FShadowsocks-4.0.7.zip" target="_blank" rel="noopener">Shadowsocks-4.0.7.zip</a></p>
+<p>下载完成之后解压打开，如下图所示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-bc4e68f14b3efc7b?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>按照你自己的配置完成之后，点击确定，然后在托盘中右键这个小飞机，启动系统代理<br>，灰色的小飞机就会亮起来，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-d55d2f90b2ff2efe?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>然后就可以畅游网络了~</p>
+<p>测试地址：</p>
+<ul>
+<li><a href="https://link.jianshu.com/?t=https%3A%2F%2Fwww.google.com.hk%2F" target="_blank" rel="noopener">谷歌</a></li>
+<li><a href="https://link.jianshu.com/?t=https%3A%2F%2Fwww.youtube.com%2F" target="_blank" rel="noopener">Youtube</a></li>
+<li><a href="https://link.jianshu.com/?t=https%3A%2F%2Ftwitter.com%2F%3Flang%3Dzh-cn" target="_blank" rel="noopener">推特</a></li>
+</ul>
+<h4 id="安卓连接"><a href="#安卓连接" class="headerlink" title="安卓连接"></a>安卓连接</h4><p>下载地址：<a href="https://link.jianshu.com/?t=http%3A%2F%2Fp1hy9syru.bkt.clouddn.com%2Fshadowsocks.apk" target="_blank" rel="noopener">shadowsocks.apk</a></p>
+<p>配置和windows差不多，配置完成后点击右上角的开启按钮即可，如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-2e0e89620cd7dd90?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h4 id="IOS连接"><a href="#IOS连接" class="headerlink" title="IOS连接"></a>IOS连接</h4><p>参考链接：<a href="https://link.jianshu.com/?t=http%3A%2F%2Fwww.360doc.com%2Fcontent%2F17%2F0614%2F06%2F37032448_662846097.shtml" target="_blank" rel="noopener">http://www.360doc.com/content/17/0614/06/37032448_662846097.shtml</a></p>
+<h4 id="MAC-连接"><a href="#MAC-连接" class="headerlink" title="MAC 连接"></a>MAC 连接</h4><p>下载地址：<br><a href="https://link.jianshu.com/?t=http%3A%2F%2Fp1hy9syru.bkt.clouddn.com%2FShadowsocksX-2.6.3.dmg" target="_blank" rel="noopener">ShadowsocksX-2.6.3.dmg</a></p>
+<h3 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h3><p>4K Youtube完成无压力</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-845cd2e94c0a6d8c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h3 id="写在后面的话"><a href="#写在后面的话" class="headerlink" title="写在后面的话"></a>写在后面的话</h3><p>搭建完成后推荐看这篇文章，完成对网速的优化：<a href="https://link.jianshu.com/?t=http%3A%2F%2Fwww.hellojava.club%2Farticle%2F5" target="_blank" rel="noopener">VPS搭建BBR加速教程（youtube1440p无压力）</a></p>
+<p>如果想多利用<a href="https://www.vultr.com/?ref=7391746" target="_blank" rel="noopener">Vultr</a>，搭建个人博客，看这篇文章：<a href="https://link.jianshu.com/?t=http%3A%2F%2Fwww.hellojava.club%2Farticle%2F7" target="_blank" rel="noopener">10分钟搭建Java开源博客Tale-超详细</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-04-12T14:53:47.821Z" itemprop="dateUpdated">2018-04-12 22:53:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/04/12/Vultr-VPS搭建SS教程/" target="_blank" rel="external">https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://lookphp.github.io">
+            <img src="/img/avatar.jpg" alt="lookphp">
+            lookphp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ss/">ss</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vps/">vps</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/&title=《Vultr VPS搭建SS教程》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/&title=《Vultr VPS搭建SS教程》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vultr VPS搭建SS教程》 — LookPHP&url=https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/30/ElasticSearch-CURD/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ElasticSearch CURD</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpeg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpeg" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>lookphp &copy; 2014 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/&title=《Vultr VPS搭建SS教程》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/&title=《Vultr VPS搭建SS教程》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vultr VPS搭建SS教程》 — LookPHP&url=https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/04/12/Vultr-VPS搭建SS教程/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACGElEQVR42u3ay2rDMBAF0P7/T6fbQqlz78gpWDpahWBsHS0GzePrK16vH+vnP8nzyZN/feXmhYGB8VjG63JdM9oP/37y+oCSvWFgYJzDSEJhG1iTzyeM5DgwMDAw2oCYM66PAwMDA2Ml4LZBtr0CYmBgYMyS2PWENk+PP5iLY2BgPJDRlsn+8/dH+hsYGBiPYrzKtfKe/FDqXWFgYGzNyANcu8X8nbOGKAYGxmmMtqDWbqgdxbgO0G+OHgMDY2vGLODmvFnbIC/5YWBg7MqYidukdHYQ+XAGBgbGOYx80KEdyMivd+0hYmBgYCSY/DI3S3qjd2JgYBzAyAtes2ZkQlop7WFgYOzNuOsD6/jkDW8ujhgYGJsyVsJlmwC3oxVRoW096mNgYGzBSEJeHijbNDgq/GFgYGzNmIW5/ymrzcAYGBj7MZJtzS6Fbfq6lDZjYGBszVi5X9XDW/HIRV5ow8DAOI2RJK7ttS8v5yWBNRpZw8DA2JSRb3Rl08XYxGgoDQMD4wRGson8ujZLa9sgi4GBcSYjD4Jto3EWlIsQjIGBsSnjVa424ZyV+G/OvzEwMB7OaOes8lGwJKAnF771gh0GBsYejJWy/kpqOmMvxXsMDIyHM9rC/b0bvS0Xx8DAwBiV0tYbpVESi4GBgVHmxCv/DEM5BgbGAYx2YCLHtE2CvOWJgYFxDqNNHVtAPq7x8aYmBgbG8xjf28TRPyPGslYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
