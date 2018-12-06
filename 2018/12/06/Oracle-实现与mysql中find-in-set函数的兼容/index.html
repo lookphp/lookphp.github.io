@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Oracle 实现与mysql中find_in_set函数的兼容 | LookPHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Oracle,mysql">
+    <meta name="description" content="find_in_set(str,strList)，寻找str在strList中的位置。 sql代码：12-- 返回结果为1,SELECT FIND_IN_SET(&amp;apos;1&amp;apos;,&amp;apos;1,2,3&amp;apos;) FROM DUAL; sql代码：12-- 返回结果为2SELECT FIND_IN_SET(&amp;apos;1&amp;apos;,&amp;apos;2,1,3&amp;apos;) FROM D">
+<meta name="keywords" content="Oracle,mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle 实现与mysql中find_in_set函数的兼容">
+<meta property="og:url" content="https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/index.html">
+<meta property="og:site_name" content="LookPHP">
+<meta property="og:description" content="find_in_set(str,strList)，寻找str在strList中的位置。 sql代码：12-- 返回结果为1,SELECT FIND_IN_SET(&amp;apos;1&amp;apos;,&amp;apos;1,2,3&amp;apos;) FROM DUAL; sql代码：12-- 返回结果为2SELECT FIND_IN_SET(&amp;apos;1&amp;apos;,&amp;apos;2,1,3&amp;apos;) FROM D">
+<meta property="og:updated_time" content="2018-12-06T15:41:57.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle 实现与mysql中find_in_set函数的兼容">
+<meta name="twitter:description" content="find_in_set(str,strList)，寻找str在strList中的位置。 sql代码：12-- 返回结果为1,SELECT FIND_IN_SET(&amp;apos;1&amp;apos;,&amp;apos;1,2,3&amp;apos;) FROM DUAL; sql代码：12-- 返回结果为2SELECT FIND_IN_SET(&amp;apos;1&amp;apos;,&amp;apos;2,1,3&amp;apos;) FROM D">
+    
+        <link rel="alternate" type="application/atom+xml" title="LookPHP" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">lookphp</h5>
+          <a href="mailto:lookphp@163.com" title="lookphp@163.com" class="mail">lookphp@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.twitter.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Oracle 实现与mysql中find_in_set函数的兼容</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Oracle 实现与mysql中find_in_set函数的兼容</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-06T15:38:49.000Z" itemprop="datePublished" class="page-time">
+  2018-12-06
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-Oracle-实现与mysql中find-in-set函数的兼容"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Oracle 实现与mysql中find_in_set函数的兼容</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-06 23:38:49" datetime="2018-12-06T15:38:49.000Z"  itemprop="datePublished">2018-12-06</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>find_in_set(str,strList)，寻找str在strList中的位置。</p>
+<p>sql代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 返回结果为1,</span><br><span class="line">SELECT FIND_IN_SET(&apos;1&apos;,&apos;1,2,3&apos;) FROM DUAL;</span><br></pre></td></tr></table></figure></p>
+<p>sql代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 返回结果为2</span><br><span class="line">SELECT FIND_IN_SET(&apos;1&apos;,&apos;2,1,3&apos;) FROM DUAL;</span><br></pre></td></tr></table></figure></p>
+<p>具体创建函数如下：</p>
+<p>sql代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">create or replace FUNCTION FIND_IN_SET(piv_str1 varchar2, piv_str2 varchar2, p_sep varchar2 := &apos;,&apos;)</span><br><span class="line">RETURN NUMBER IS</span><br><span class="line">l_idx    number:=0; -- 用于计算piv_str2中分隔符的位置</span><br><span class="line">str      varchar2(500);  -- 根据分隔符截取的子字符串</span><br><span class="line">piv_str  varchar2(500) := piv_str2; -- 将piv_str2赋值给piv_str</span><br><span class="line">res      number:=0; -- 返回结果</span><br><span class="line">res_place      number:=0;-- 原字符串在目标字符串中的位置</span><br><span class="line">BEGIN</span><br><span class="line">-- 如果字段是null 则返回0</span><br><span class="line">IF piv_str2 IS NULL THEN</span><br><span class="line">RETURN res;</span><br><span class="line">END IF;</span><br><span class="line">-- 如果piv_str中没有分割符，直接判断piv_str1和piv_str是否相等，相等 res_place=1</span><br><span class="line">IF instr(piv_str, p_sep, 1) = 0 THEN</span><br><span class="line">IF piv_str = piv_str1 THEN</span><br><span class="line">res_place:=1;</span><br><span class="line">res:= res_place;</span><br><span class="line">END IF;</span><br><span class="line">ELSE</span><br><span class="line">-- 循环按分隔符截取piv_str</span><br><span class="line">LOOP</span><br><span class="line">l_idx := instr(piv_str,p_sep);</span><br><span class="line">--</span><br><span class="line">res_place := res_place + 1;</span><br><span class="line">-- 当piv_str中还有分隔符时</span><br><span class="line">IF l_idx &gt; 0 THEN</span><br><span class="line">-- 截取第一个分隔符前的字段str</span><br><span class="line">str:= substr(piv_str,1,l_idx-1);</span><br><span class="line">-- 判断 str 和piv_str1 是否相等，相等则结束循环判断</span><br><span class="line">IF str = piv_str1 THEN</span><br><span class="line">res:= res_place;</span><br><span class="line">EXIT;</span><br><span class="line">END IF;</span><br><span class="line">piv_str := substr(piv_str,l_idx+length(p_sep));</span><br><span class="line">ELSE</span><br><span class="line">-- 当截取后的piv_str 中不存在分割符时，判断piv_str和piv_str1是否相等，相等 res=res_path</span><br><span class="line">IF piv_str = piv_str1 THEN</span><br><span class="line">res:= res_place;</span><br><span class="line">END IF;</span><br><span class="line">-- 无论最后是否相等，都跳出循环</span><br><span class="line">EXIT;</span><br><span class="line">END IF;</span><br><span class="line">END LOOP;</span><br><span class="line">-- 结束循环</span><br><span class="line">END IF;</span><br><span class="line">-- 返回res</span><br><span class="line">RETURN res;</span><br><span class="line">END FIND_IN_SET;</span><br></pre></td></tr></table></figure></p>
+<p>对于某些查询mysql只需写出表达式就可以了，但是我写的oracle的需要写出表达式出来<br>例如：<br>sql代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from tableA a left join tableB b on FIND_IN_SET(a.id ,b.aid) ;   -- mysql这样写就可以了</span><br></pre></td></tr></table></figure></p>
+<p>sql代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from tableA a left join tableB b on FIND_IN_SET(a.id ,b.aid) &gt;0; -- oracle就要写出具体的表达式</span><br></pre></td></tr></table></figure></p>
+<p>参考文档：<br><a href="http://nbczw8750.iteye.com/blog/2317996" target="_blank" rel="noopener">Oracle 实现与mysql中find_in_set函数的兼容</a></p>
+<p>成功创建后的SQL语句，用作记录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">CREATE OR REPLACE FUNCTION FIND_IN_SET(piv_str1 varchar2, piv_str2 varchar2, p_sep varchar2 := &apos;,&apos;)</span><br><span class="line">RETURN NUMBER IS</span><br><span class="line">l_idx    number:=0; -- 用于计算piv_str2中分隔符的位置</span><br><span class="line">str      varchar2(500);  -- 根据分隔符截取的子字符串</span><br><span class="line">piv_str  varchar2(500) := piv_str2; -- 将piv_str2赋值给piv_str</span><br><span class="line">res      number:=0; -- 返回结果</span><br><span class="line">res_place      number:=0;-- 原字符串在目标字符串中的位置</span><br><span class="line">BEGIN</span><br><span class="line">-- 如果字段是null 则返回0</span><br><span class="line">IF piv_str2 IS NULL THEN</span><br><span class="line">RETURN res;</span><br><span class="line">END IF;</span><br><span class="line">-- 如果piv_str中没有分割符，直接判断piv_str1和piv_str是否相等，相等 res_place=1</span><br><span class="line">IF instr(piv_str, p_sep, 1) = 0 THEN</span><br><span class="line">IF piv_str = piv_str1 THEN</span><br><span class="line">res_place:=1;</span><br><span class="line">res:= res_place;</span><br><span class="line">END IF;</span><br><span class="line">ELSE</span><br><span class="line">-- 循环按分隔符截取piv_str</span><br><span class="line">LOOP</span><br><span class="line">l_idx := instr(piv_str,p_sep);</span><br><span class="line">--</span><br><span class="line">res_place := res_place + 1;</span><br><span class="line">-- 当piv_str中还有分隔符时</span><br><span class="line">IF l_idx &gt; 0 THEN</span><br><span class="line">-- 截取第一个分隔符前的字段str</span><br><span class="line">str:= substr(piv_str,1,l_idx-1);</span><br><span class="line">-- 判断 str 和piv_str1 是否相等，相等则结束循环判断</span><br><span class="line">IF str = piv_str1 THEN</span><br><span class="line">res:= res_place;</span><br><span class="line">EXIT;</span><br><span class="line">END IF;</span><br><span class="line">piv_str := substr(piv_str,l_idx+length(p_sep));</span><br><span class="line">ELSE</span><br><span class="line">-- 当截取后的piv_str 中不存在分割符时，判断piv_str和piv_str1是否相等，相等 res=res_path</span><br><span class="line">IF piv_str = piv_str1 THEN</span><br><span class="line">res:= res_place;</span><br><span class="line">END IF;</span><br><span class="line">-- 无论最后是否相等，都跳出循环</span><br><span class="line">EXIT;</span><br><span class="line">END IF;</span><br><span class="line">END LOOP;</span><br><span class="line">-- 结束循环</span><br><span class="line">END IF;</span><br><span class="line">-- 返回res</span><br><span class="line">RETURN res;</span><br><span class="line">END FIND_IN_SET;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-12-06T15:41:57.093Z" itemprop="dateUpdated">2018-12-06 23:41:57</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/" target="_blank" rel="external">https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://lookphp.github.io">
+            <img src="/img/avatar.jpg" alt="lookphp">
+            lookphp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/&title=《Oracle 实现与mysql中find_in_set函数的兼容》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/&title=《Oracle 实现与mysql中find_in_set函数的兼容》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Oracle 实现与mysql中find_in_set函数的兼容》 — LookPHP&url=https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/06/在-Oracle-中实现自增ID/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">在 Oracle 中实现自增ID</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/06/php安装oci8扩展/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">php安装oci8扩展</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpeg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpeg" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>lookphp &copy; 2014 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/&title=《Oracle 实现与mysql中find_in_set函数的兼容》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/&title=《Oracle 实现与mysql中find_in_set函数的兼容》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Oracle 实现与mysql中find_in_set函数的兼容》 — LookPHP&url=https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMUlEQVR42u3aQY4iMRAEQP7/afY60m6jzCpmRZvo06gZbIc5lJzlxyN+nj+e5M3+P//+9PXaHr/xYGNjY9+E/Xz5XC39asrkTfI++TTfuH+Mho2NjX0c+/Wy8kVcfXezxNclKl8nNjY2NnY+cbIFyQh5ccXGxsbGbtkJZnMgyT/FxsbGxm6LxKapMDvYzMKvt2Vp2NjY2B/PzgGf//ev9LexsbGxP5j9LJ98mna0ts38XDzY2NjYJ7FnjNkBZnYlqB2nOBRhY2NjH8Fur8u0oU8eIeVN4k2Y9ch3DhsbG/tW7LaMvW79vvewkV8Jyt9jY2Njn8TOy9KmpOXBU7Kh7cWdy5GxsbGxj2Dvo5y8zLRt4/yKT/L+MlTCxsbGvjk7H2JWxvIof1P8ZsUVGxsb+wz2LBhqk5n8eLNpORTlFhsbG/sg9n7iTVM2v9yz2URsbGzsb2BvCs+mczpr09bdj6vZsbGxsQ9i70vI7FrP7GrOrEmAjY2N/T3sTet0dlCJehejDY3w2NjY2AexZ1lUGyTljdtZvNUen7CxsbHPYOfR/6Zc5c3gTXkryjA2Njb2EezZcO3FnTzJmZXMN5+6sLGxsW/Fbq/U5JF9e0Gnbe7OCmS0WmxsbOxbsfNi0Mb37fGgffIf6fIogo2NjX0QexMh1VVxdPVn1u69nAUbGxv7OHbeEpiVnzZUms1eHIGwsbGxj2O3B5J3Bfr7hm5S6qKuCDY2NvZB7HyaWYlq8e2B5/WmY2NjY5/HLj4eNQOScKqNkPJQacjAxsbGviF7M3QbDOXlcHbYKGIpbGxs7OPYbaO3bQ+0YdCsJVD8SNjY2NiHsvOvtVdq8kZC8n7TrsDGxsY+ld0CNuPkcX8+ex2ZYWNjYx/BfpbPZjuSFmxbqIbXgLCxsbEPYrcFYDP9prAl7Yo8kMLGxsY+j90WrXb/8oZBO2Ybij02N4ywsbGxP569CZXaatle9Imu4Pz/LA0bGxv75uy8oTs7qLRBVbsebGxs7G9m5weDtsi1B5s2DsPGxsY+m52ESu01zXbj2jXkJW3VHsDGxsb+ePYwlFnESW37YX8RZxhIYWNjY386+w9GyFPvU8saIgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

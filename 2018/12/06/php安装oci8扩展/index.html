@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>php安装oci8扩展 | LookPHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Oracle,php">
+    <meta name="description" content="#适用环境  操作系统：Windows10 64位 PHPstudy集成环境  #安装过程  安装一：在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 &amp;quot;;extension=php_oci8.dll&amp;quot;这句话，将其前面的分号去掉，结果如下： 123extension=php_oci8.dll      ; Use with Oracle 10gR2 Ins">
+<meta name="keywords" content="Oracle,php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php安装oci8扩展">
+<meta property="og:url" content="https://lookphp.github.io/2018/12/06/php安装oci8扩展/index.html">
+<meta property="og:site_name" content="LookPHP">
+<meta property="og:description" content="#适用环境  操作系统：Windows10 64位 PHPstudy集成环境  #安装过程  安装一：在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 &amp;quot;;extension=php_oci8.dll&amp;quot;这句话，将其前面的分号去掉，结果如下： 123extension=php_oci8.dll      ; Use with Oracle 10gR2 Ins">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1463937-2e0ea7e47be4776a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1463937-4f89f596d7e59476.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1463937-98604d409ab23074.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-06T15:41:08.128Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php安装oci8扩展">
+<meta name="twitter:description" content="#适用环境  操作系统：Windows10 64位 PHPstudy集成环境  #安装过程  安装一：在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 &amp;quot;;extension=php_oci8.dll&amp;quot;这句话，将其前面的分号去掉，结果如下： 123extension=php_oci8.dll      ; Use with Oracle 10gR2 Ins">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1463937-2e0ea7e47be4776a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="LookPHP" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">lookphp</h5>
+          <a href="mailto:lookphp@163.com" title="lookphp@163.com" class="mail">lookphp@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.twitter.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">php安装oci8扩展</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">php安装oci8扩展</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-06T15:38:26.000Z" itemprop="datePublished" class="page-time">
+  2018-12-06
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-php安装oci8扩展"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">php安装oci8扩展</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-06 23:38:26" datetime="2018-12-06T15:38:26.000Z"  itemprop="datePublished">2018-12-06</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>#适用环境</p>
+<ul>
+<li>操作系统：Windows10 64位</li>
+<li>PHPstudy集成环境</li>
+</ul>
+<p>#安装过程</p>
+<ol>
+<li><p><strong>安装一</strong>：在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 <code>&quot;;extension=php_oci8.dll&quot;</code>这句话，将其前面的分号去掉，结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">extension=php_oci8.dll      ; Use with Oracle 10gR2 Instant Client</span><br><span class="line">extension=php_oci8_11g.dll  ; Use with Oracle 11gR2 Instant Client</span><br><span class="line">extension=php_pdo_oci.dll</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>题外话，一般我们开启扩展支持，只需要在php.ini中打开扩展就可以，比如要连接oracle数据库，我们就只要打开 php_oci8.dll 和 php_oci8_11g.dll 就可以了。但是我们打开后，查看phpinfo()并没有开启，也没错误提示，这个问题就有点大，经过一番百度后，发现还需要安装客户端，所以这里我们还需要下载oracle的客户端，直接下载只有客户端支持库的。</p>
+</li>
+<li><p><strong>安装二</strong>：下载并安装客户端</p>
+<blockquote>
+<p>下载地址：<br><a href="https://pan.baidu.com/s/1sYLcU3CslPrjZXJMUYf6XA" target="_blank" rel="noopener">32位链接</a>  密码: cp3v<br><a href="https://pan.baidu.com/s/1R9OmchJqJYqVUpN1Y9bJ4g" target="_blank" rel="noopener">64位链接</a>  密码: wdst</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>注意：</strong><br>这里的32位，64位不是指的Windows操作系统，而是要根据你安装的PHP的位数，就好比今天我纠结了好久的为什么不行，然后注意到安装的是64位的客户端，按照系统看的。而PHP却是32位的（我是用的是集成环境 phpStudy），后更换成32位的客户端安装就真的可以了。附：<a href="https://www.jianshu.com/p/901ff18eb97a" target="_blank" rel="noopener">如何判断PHP是32位，还是64位？</a></p>
+<ol>
+<li><strong>配置系统变量</strong>：<br>将路径<code>D:\Program Files (x86)\Oracle\Instant Client\bin</code>添加到系统变量中。</li>
+</ol>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/1463937-2e0ea7e47be4776a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置环境变量.png" title="">
+                </div>
+                <div class="image-caption">配置环境变量.png</div>
+            </figure>
+<ol>
+<li><strong>根据Oracle服务器的配置，修改Instant Client的配置</strong>：</li>
+</ol>
+<p>Oracle服务器的配置地址：D:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\tnsnames.ora</p>
+<p>tnsnames.ora文件内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># tnsnames.ora Network Configuration File: D:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\tnsnames.ora</span><br><span class="line"># Generated by Oracle configuration tools.</span><br><span class="line"></span><br><span class="line">LISTENER_ORCL =</span><br><span class="line">  (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ORACLR_CONNECTION_DATA =</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SID = CLRExtProc)</span><br><span class="line">      (PRESENTATION = RO)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">ORCL =</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVER = DEDICATED)</span><br><span class="line">      (SERVICE_NAME = orcl.16.22.64)</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure></p>
+<p>参照服务器的配置，修改Instant Client的配置：<br>Instant Client的地址：D:\Program Files (x86)\Oracle\Instant Client\network\admin\tnsnames.ora<br>tnsnames.ora文件内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># tnsnames.ora Network Configuration File.</span><br><span class="line"># Generated by Oracle configuration tools.</span><br><span class="line"></span><br><span class="line"># Sample:</span><br><span class="line">#DatabaseName =</span><br><span class="line">#  (DESCRIPTION =</span><br><span class="line">#    (ADDRESS_LIST =</span><br><span class="line">#      (ADDRESS = (PROTOCOL = TCP)(HOST = 127.0.0.1)(PORT = 1521))</span><br><span class="line">#    )</span><br><span class="line">#    (CONNECT_DATA =</span><br><span class="line">#      (SERVER = DEDICATED)</span><br><span class="line">#      (SERVICE_NAME = ServiceName)</span><br><span class="line">#      (INSTANCE_NAME = InstanceName)</span><br><span class="line">#    )</span><br><span class="line">#  )</span><br><span class="line"></span><br><span class="line"># Modify the following content to fit your own needs.</span><br><span class="line">ORCL=</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVER = DEDICATED)</span><br><span class="line">      (SERVICE_NAME = ORCL</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure></p>
+<p>至此，打开phpinfo页面，查看oci8的相关扩展信息是否开启，如图。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/1463937-4f89f596d7e59476.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="php的oci8扩展信息.png" title="">
+                </div>
+                <div class="image-caption">php的oci8扩展信息.png</div>
+            </figure>
+<p>6.<strong>使用如下代码链接Oracle时报错，报错信息如下</strong>:</p>
+<p>链接代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// Create connection to Oracle</span><br><span class="line"> $conn = oci_connect(&quot;数据库名称&quot;, &quot;数据库密码&quot;, &quot;//localhost/orcl&quot;);</span><br><span class="line"> if (!$conn) &#123;</span><br><span class="line">    $m = oci_error();</span><br><span class="line">    echo $m[&apos;message&apos;], &quot;\n&quot;;</span><br><span class="line">    exit;</span><br><span class="line"> &#125;</span><br><span class="line"> else &#123;</span><br><span class="line">   print &quot;Connected to Oracle!&quot;;</span><br><span class="line"> &#125;</span><br><span class="line">// // Close the Oracle connection</span><br><span class="line"> oci_close($conn);</span><br></pre></td></tr></table></figure></p>
+<p>错误码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Oracle 报错ORA-12514: TNS:listener does not currently know of service requested in connec</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><strong>通过上网查到可通过修改listener.ora文件解决第6步的错误</strong>：<br>添加了一段在安装目录D:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN 下文件修改了加上一段复制的代码（灰色选中部分）:<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/1463937-98604d409ab23074.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="12514错误配置文件.png" title="">
+                </div>
+                <div class="image-caption">12514错误配置文件.png</div>
+            </figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SID_LIST_LISTENER =</span><br><span class="line">  (SID_LIST =</span><br><span class="line">    (SID_DESC =</span><br><span class="line">      (SID_NAME = CLRExtProc)</span><br><span class="line">      (ORACLE_HOME = D:\app\Administrator\product\11.2.0\dbhome_1)</span><br><span class="line">      (PROGRAM = extproc)</span><br><span class="line">      (ENVS = &quot;EXTPROC_DLLS=ONLY:D:\app\Administrator\product\11.2.0\dbhome_1\bin\oraclr11.dll&quot;)</span><br><span class="line">    )(SID_DESC =</span><br><span class="line">    (GLOBAL_DBNAME = ORCL)</span><br><span class="line">    (ORACLE_HOME = D:\app\Administrator\product\11.2.0\dbhome_1)</span><br><span class="line">    (SID_NAME = ORCL)</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+<ol>
+<li>关掉Service和LISTENER，再启动Service和LISTENER。<br><strong>注意：</strong> 复制请留意到ORACLE_HOME =目录，复制目录一定是要本机文件目录，细节真的很重要！</li>
+</ol>
+<p>参考文档：<br><a href="http://www.oracle.com/technetwork/cn/articles/dsl/technote-php-instant-090922-zhs.html?" target="_blank" rel="noopener">在 Linux 和 Windows 上安装 PHP 和 Oracle Instant Client</a><br><a href="http://blog.csdn.net/wang_quan_li/article/details/70671247" target="_blank" rel="noopener">PHP 无法开启 OCI8 扩展原因</a><br><a href="http://blog.csdn.net/u010832551/article/details/51162133" target="_blank" rel="noopener">Windows PHP/phpStudy 连接 甲骨文Oracle 数据库 oci8</a><br><a href="http://blog.csdn.net/u010832551/article/details/51162133" target="_blank" rel="noopener">Oracle 报错ORA-12514: TNS:listener does not currently know of service requested in connec</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-12-06T15:41:08.128Z" itemprop="dateUpdated">2018-12-06 23:41:08</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/06/php安装oci8扩展/" target="_blank" rel="external">https://lookphp.github.io/2018/12/06/php安装oci8扩展/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://lookphp.github.io">
+            <img src="/img/avatar.jpg" alt="lookphp">
+            lookphp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/12/06/php安装oci8扩展/&title=《php安装oci8扩展》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/12/06/php安装oci8扩展/&title=《php安装oci8扩展》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/12/06/php安装oci8扩展/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php安装oci8扩展》 — LookPHP&url=https://lookphp.github.io/2018/12/06/php安装oci8扩展/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/12/06/php安装oci8扩展/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/06/Oracle-实现与mysql中find-in-set函数的兼容/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Oracle 实现与mysql中find_in_set函数的兼容</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/06/阿里云https-nginx服务搭建及配置/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">阿里云https+nginx服务搭建及配置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpeg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpeg" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>lookphp &copy; 2014 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/12/06/php安装oci8扩展/&title=《php安装oci8扩展》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/12/06/php安装oci8扩展/&title=《php安装oci8扩展》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/12/06/php安装oci8扩展/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《php安装oci8扩展》 — LookPHP&url=https://lookphp.github.io/2018/12/06/php安装oci8扩展/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/12/06/php安装oci8扩展/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3ay47CMAwFUP7/pztbJIZybRekpCcrBG3J6cKKH49HvI6n9fzN+a/P35w/uXpXc2FgYCzLOE5XlfG6iepd59e8pWJgYNyAkYTC6qOrL+L884c9Y2BgYBRJ1fCKgYGB8W1GnqZOjpIYGBgYeegcpZox8ou5OAYGxoKMvOr++89f6W9gYGAsxTiKK2lYzpud5V1hYGBszagmonm6O09uy/vBwMDYlJG3Ic9TzeSc1hs+SxJdDAyMvRmjQvyAlLcK8iMmBgbGHRjV0a7JHycvJT+MYmBg7M3olePzNmcvJa4GcQwMjL0ZvUJ/fohMAm4y0hG9LAwMjBswLksmLxrXqN6LgYGxKyNPWSdjFnnKml/z9oSLgYGxNSMpb1WPib0mQZ7Elmc9MDAwFmTMy2q9BDgP6NVCHgYGxn6MvDSfj0dUC3m9At+HEy4GBsZGjPzolhToqwlwb8yiPDmCgYGxOKOaxPaK/r3hsEKgx8DA2Jpx1ZBEldpLkpsjFxgYGFsweoNfScKZ/Nob0Xg7M4KBgXEDRrKhapszT4YnaTMGBsZ9GEkIzrebHA0njdVRRxQDA2MRxlFcPUzeDBjl3xgYGJsy5tG6F6arzywMW2BgYGzKqI5WVEtpkxBceN8YGBg3YExGKHqb6B37oh4sBgYGRnD9/Mk/CrgYGBhbM6ojFHlLMm9I/JPEYmBgbM3olfuvSmKTYtxl5TYMDIwFGdeeu5IkdrLpUVMTAwNjPcYfRfrRP/SsLw4AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
