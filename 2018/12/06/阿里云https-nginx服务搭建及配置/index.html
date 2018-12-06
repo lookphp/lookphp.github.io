@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>阿里云https+nginx服务搭建及配置 | LookPHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="-nginx">
+    <meta name="description" content="本文不会介绍https相关知识，只是把我创建https服务的过程分享出来，供读者参考。并且已经假设你已经购买了服务器和域名。  购买证书 通过控制台进入CA证书服务，点击右上角的购买证书，进入如下图的界面，选择免费1年的Symantec的DV SSL。">
+<meta name="keywords" content="-nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里云https+nginx服务搭建及配置">
+<meta property="og:url" content="https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/index.html">
+<meta property="og:site_name" content="LookPHP">
+<meta property="og:description" content="本文不会介绍https相关知识，只是把我创建https服务的过程分享出来，供读者参考。并且已经假设你已经购买了服务器和域名。  购买证书 通过控制台进入CA证书服务，点击右上角的购买证书，进入如下图的界面，选择免费1年的Symantec的DV SSL。">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-aaf16d595a87e4e5?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-463733e95fa510d6?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-d7869ce6a6be7162?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-4448f2f4db6a3504?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-0763c1adaf5e13ac?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-d73ebd3370745848?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-06T15:11:21.991Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="阿里云https+nginx服务搭建及配置">
+<meta name="twitter:description" content="本文不会介绍https相关知识，只是把我创建https服务的过程分享出来，供读者参考。并且已经假设你已经购买了服务器和域名。  购买证书 通过控制台进入CA证书服务，点击右上角的购买证书，进入如下图的界面，选择免费1年的Symantec的DV SSL。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1463937-aaf16d595a87e4e5?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="LookPHP" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">lookphp</h5>
+          <a href="mailto:lookphp@163.com" title="lookphp@163.com" class="mail">lookphp@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.twitter.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">阿里云https+nginx服务搭建及配置</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">阿里云https+nginx服务搭建及配置</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-06T15:08:44.000Z" itemprop="datePublished" class="page-time">
+  2018-12-06
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#购买证书"><span class="post-toc-number">1.</span> <span class="post-toc-text">购买证书</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#添加443端口（https）安全组规则"><span class="post-toc-number">2.</span> <span class="post-toc-text">添加443端口（https）安全组规则</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#下载证书"><span class="post-toc-number">3.</span> <span class="post-toc-text">下载证书</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#配置nginx服务器"><span class="post-toc-number">4.</span> <span class="post-toc-text">配置nginx服务器</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#修改防火墙规则"><span class="post-toc-number">5.</span> <span class="post-toc-text">修改防火墙规则</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#测试"><span class="post-toc-number">6.</span> <span class="post-toc-text">测试</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#配置过程中遇到的问题及解决办法"><span class="post-toc-number">7.</span> <span class="post-toc-text">配置过程中遇到的问题及解决办法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考文档："><span class="post-toc-number">8.</span> <span class="post-toc-text">参考文档：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-阿里云https-nginx服务搭建及配置"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">阿里云https+nginx服务搭建及配置</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-06 23:08:44" datetime="2018-12-06T15:08:44.000Z"  itemprop="datePublished">2018-12-06</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>本文不会介绍https相关知识，只是把我创建https服务的过程分享出来，供读者参考。并且已经假设你已经购买了服务器和域名。</p>
+</blockquote>
+<h1 id="购买证书"><a href="#购买证书" class="headerlink" title="购买证书"></a>购买证书</h1><ul>
+<li><p>通过控制台进入CA证书服务，点击右上角的购买证书，进入如下图的界面，选择免费1年的<code>Symantec</code>的<code>DV SSL</code>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-aaf16d595a87e4e5?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+</li>
+<li><p>点击购买，一路点过去，然后回到证书服务主页，会出现一条订单信息，点击补全，如下图所示。</p>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-463733e95fa510d6?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>-然后按照要求，首先填写你要申请证书的完整域名（例如<a href="http://www.test.com，因为此证书为单域名，不能使用通配符）；" target="_blank" rel="noopener">www.test.com，因为此证书为单域名，不能使用通配符）；</a></p>
+<ul>
+<li>然后填写个人信息，值得注意的是需要勾选下图红圈包围的选项，让验证自动化进行，不用手动操作；然后下一步，完成信息补全，等待几分钟，验证就可以通过。 </li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1463937-d7869ce6a6be7162?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h1 id="添加443端口（https）安全组规则"><a href="#添加443端口（https）安全组规则" class="headerlink" title="添加443端口（https）安全组规则"></a>添加443端口（https）安全组规则</h1><ul>
+<li>为了安全，阿里云只开放了少部分的端口，像常见的80、443端口，都需要我们手动开启。在等待证书验证期间，你可以去检查一下你的服务器的安全组配置，看一下是否加入了443端口的链接，防止后面连接不上。创建的新规则如下图。</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-4448f2f4db6a3504?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h1 id="下载证书"><a href="#下载证书" class="headerlink" title="下载证书"></a>下载证书</h1><ul>
+<li><p>几分钟后，可以看到下图的状态。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-0763c1adaf5e13ac?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+</li>
+<li><p>选择为nginx制作的证书，并下载到本地。</p>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-d73ebd3370745848?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<h1 id="配置nginx服务器"><a href="#配置nginx服务器" class="headerlink" title="配置nginx服务器"></a>配置nginx服务器</h1><ul>
+<li><p>把这个文件解压后，会有两个文件，分别为<code>****.pem</code>和<code>****.key</code>（可以修改成你需要的名字），将这两个文件拷贝到你的Nginx根目录下的cert文件夹内（自己创建的，也可以命名成其他名字）。</p>
+</li>
+<li><p>接下来就要配置Nginx服务器了。</p>
+</li>
+<li><p>如果你配置了反向代理，就去conf.d目录下，修改你要配置https的conf文件。下面贴一个范例配置。</p>
+</li>
+<li>其中端口80为http链接，设置为重定向https；端口443为https链接。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">upstream blog &#123;</span><br><span class="line">  server 127.0.0.1:8080;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name www.test.com;</span><br><span class="line">  return 301 https://$host$request_uri;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    server_name www.test.com;</span><br><span class="line">    index index.html;</span><br><span class="line">    ssl_certificate   /etc/nginx/cert/***.pem;</span><br><span class="line">    ssl_certificate_key  /etc/nginx/cert/***.key;</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    location / &#123;</span><br><span class="line">    proxy_set_header  X-Forwarded-Host $host;</span><br><span class="line">    proxy_set_header  X-Forwarded-Proto $scheme;</span><br><span class="line">    proxy_set_header  X-Real-IP  $remote_addr;</span><br><span class="line">    proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">    proxy_set_header Host $http_host;</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    expires off;</span><br><span class="line">    sendfile off;</span><br><span class="line">    proxy_pass http://test;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="修改防火墙规则"><a href="#修改防火墙规则" class="headerlink" title="修改防火墙规则"></a>修改防火墙规则</h1><ul>
+<li>打开配置文件 <code>$ vim /etc/sysconfig/iptables</code> 增加443端口<br><code>-A INPUT -p tcp -m tcp --dport 443 -j ACCEPT</code></li>
+<li>重启iptables<br><code>service iptables restart</code></li>
+</ul>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><ul>
+<li>配置完以后运行<code>nginx -t</code>查看配置文件是否有误。<ul>
+<li>如果通过了运行 <code>nginx -s reload</code>重新加载配置，去浏览器输入链接，此时成功进入https链接✌️。</li>
+</ul>
+</li>
+</ul>
+<h1 id="配置过程中遇到的问题及解决办法"><a href="#配置过程中遇到的问题及解决办法" class="headerlink" title="配置过程中遇到的问题及解决办法"></a>配置过程中遇到的问题及解决办法</h1><ul>
+<li><p>如何验证是否开启443端口？<br><code>telent www.你的域名.com 443</code></p>
+</li>
+<li><p>Nginx 配置 Https 出现no “ssl_certificate” is defined in server listening on SSL port while SSL handshaking怎么处理？</p>
+</li>
+</ul>
+<blockquote>
+<p>Solution:<br>you should need to add following to nginx server block<br>listen 443 default_server ssl;<br>example:-<br>server {<br>listen 443 ssl;<br>ssl_certificate   /etc/nginx/cert/<strong><strong>.pem;<br>ssl_certificate_key  /etc/nginx/cert/</strong></strong>.key;<br>}</p>
+</blockquote>
+<p>如上面所说，将server中的ssl声明复制一份到<code>nginx.conf</code>中的http模块中，或<code>conf.d/default.conf</code>中。http中声明的全局SSL证书只是个打酱油的，只是为了不让nginx报上述no “ssl_certificate” is defined的错误，真正生效的证书配置还是在server段。</p>
+<h1 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h1><ul>
+<li><a href="https://juejin.im/entry/59f0af426fb9a045076edffa" target="_blank" rel="noopener">基础搭建教程</a></li>
+<li><a href="http://gitfree.me/2017/05/02/nginx-no-ssl-certificate-problem/" target="_blank" rel="noopener">Nginx 配置 Https 出现no “ssl_certificate” is defined问题原因及解决方法 </a></li>
+<li><a href="https://www.tectut.com/2014/10/solved-no-ssl_certificate-is-defined-in-server-listening-on-ssl-port-while-ssl-handshaking-client/" target="_blank" rel="noopener">Solved no “ssl_certificate” is defined in server listening on SSL port while SSL handshaking, client</a></li>
+<li><a href="http://ju.outofmemory.cn/entry/185812" target="_blank" rel="noopener">ssl certificate 配置记录</a></li>
+<li><a href="http://tengine.taobao.org/book/chapter_05.html" target="_blank" rel="noopener">upstream模块</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-12-06T15:11:21.991Z" itemprop="dateUpdated">2018-12-06 23:11:21</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/06/阿里云https-nginx服务搭建及配置/" target="_blank" rel="external">https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://lookphp.github.io">
+            <img src="/img/avatar.jpg" alt="lookphp">
+            lookphp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">-nginx</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/&title=《阿里云https+nginx服务搭建及配置》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/&title=《阿里云https+nginx服务搭建及配置》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《阿里云https+nginx服务搭建及配置》 — LookPHP&url=https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/12/Vultr-VPS搭建SS教程/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vultr VPS搭建SS教程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpeg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpeg" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>lookphp &copy; 2014 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/&title=《阿里云https+nginx服务搭建及配置》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/&title=《阿里云https+nginx服务搭建及配置》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《阿里云https+nginx服务搭建及配置》 — LookPHP&url=https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/12/06/阿里云https-nginx服务搭建及配置/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3aQU4DMQwFUO5/6bJFgtL/7QQV6WWFpkMzbxaxa/vjI16PL2t2z9frybe1u68WHh4e3uLRv69n9yTXn/HaK8m+T18BHh4e3jVecpT/fljn+M3pnT8zHh4e3nvy8iO+PtCDV4mHh4f3X3j50d/+V5I04+Hh4b0Pb/N1s5JBHiT+qNaCh4eHN8ldX3SR3ufvK/09PDw8vHVXvS0W5FfahtkwtODh4eFd4OUHbkJtk+NZAl2PZ+Hh4eEd5bVN+lnOnpdcZ6WNp9+Mh4eHd4EXxY11S6zlzYYG6vIEHh4e3oVi7uYR29ByKsku8Hh4eHgjXj4+dfaevMSQh6gX02R4eHh4h3jJwZ20ptqQkBzrSTCIRsTw8PDwLvBmpdikCJunxe0YwSYg4eHh4W14j8VKkuO2iVU3tH5/rXh4eHgXeG3Lqn0p++h04B48PDy8o7zZT/18s7ygkBR56+EwPDw8vAu8A1WKo0MGOaMIZnh4eHhHeZvxpn1LrD3u84QeDw8P7zavbUS1wwSnxrzyYawXDTA8PDy8BW+/cbFB2dDKk+miDYaHh4e35uWAfeOq3Ws2dPVDlRoPDw/vKC9/oPYoT8oZbVMtKftGYwR4eHh4a96mfTULJG1Dq03Q69EBPDw8vKO8tsyaPMps2GtYaMbDw8O7xjub7Obsdvc6eODh4eFd5rUl1M2wVJ6Ib+7Hw8PDu81r21ezou2LMdMyREXFCDw8PLxDvEe58jR3P4TaTo1FVRY8PDy8NS9fbds+ebh24KBNsvHw8PDu8drm/SYh3vPyoIKHh4d3m7fpHLWHdVu8aIsR0cd4eHh4f8jLm/dtETbP/fOAgYeHh/c+vGG3bfTi8nLGscCAh4eHF/BmZdbNsFTe+joQGPDw8PCO8tof/DkjCTztQEAREvDw8PDO8z4B5U+ccZ/X4WQAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
