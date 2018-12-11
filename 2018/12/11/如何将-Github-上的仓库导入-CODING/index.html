@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>如何将 Github 上的仓库导入 CODING | LookPHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="git">
+    <meta name="description" content="在 CODING 中新建项目在 CODING 中新建一个同名项目，不选择 启用 README.md 文件初始化项目，以及任何 License 和 .gitignore 文件。                                                                                             image              克">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何将 Github 上的仓库导入 CODING">
+<meta property="og:url" content="https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/index.html">
+<meta property="og:site_name" content="LookPHP">
+<meta property="og:description" content="在 CODING 中新建项目在 CODING 中新建一个同名项目，不选择 启用 README.md 文件初始化项目，以及任何 License 和 .gitignore 文件。                                                                                             image              克">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-2775efb96eac33eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-29db5050f1fbade1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-23f9ec258292b944.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-88df801b8ce464bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-0798c1ce42580323.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-0e93b05fc67b503d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1463937-effbbd70e7176326.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-11T16:03:56.201Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何将 Github 上的仓库导入 CODING">
+<meta name="twitter:description" content="在 CODING 中新建项目在 CODING 中新建一个同名项目，不选择 启用 README.md 文件初始化项目，以及任何 License 和 .gitignore 文件。                                                                                             image              克">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1463937-2775efb96eac33eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="LookPHP" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">lookphp</h5>
+          <a href="mailto:lookphp@163.com" title="lookphp@163.com" class="mail">lookphp@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                存档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.twitter.com/lookphp" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">如何将 Github 上的仓库导入 CODING</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">如何将 Github 上的仓库导入 CODING</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-11T15:24:00.000Z" itemprop="datePublished" class="page-time">
+  2018-12-11
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#在-CODING-中新建项目"><span class="post-toc-number">1.</span> <span class="post-toc-text">在 CODING 中新建项目</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#克隆-Github-上的项目"><span class="post-toc-number">2.</span> <span class="post-toc-text">克隆 Github 上的项目</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#将克隆下来的仓库推送到-CODING"><span class="post-toc-number">3.</span> <span class="post-toc-text">将克隆下来的仓库推送到 CODING</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考文档"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考文档</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-如何将-Github-上的仓库导入-CODING"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">如何将 Github 上的仓库导入 CODING</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-11 23:24:00" datetime="2018-12-11T15:24:00.000Z"  itemprop="datePublished">2018-12-11</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="在-CODING-中新建项目"><a href="#在-CODING-中新建项目" class="headerlink" title="在 CODING 中新建项目"></a>在 CODING 中新建项目</h1><p>在 CODING 中新建一个同名项目，不选择 启用 README.md 文件初始化项目，以及任何 License 和 .gitignore 文件。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-2775efb96eac33eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure></p>
+<h1 id="克隆-Github-上的项目"><a href="#克隆-Github-上的项目" class="headerlink" title="克隆 Github 上的项目"></a>克隆 Github 上的项目</h1><p>将 Github 上想要导入的项目完整克隆到本地。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-29db5050f1fbade1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure></p>
+<p>本地执行克隆命令，并带上参数 <code>--bare</code><br><code>git clone https://github.com/antirez/redis.git --bare</code><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-23f9ec258292b944.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure></p>
+<h1 id="将克隆下来的仓库推送到-CODING"><a href="#将克隆下来的仓库推送到-CODING" class="headerlink" title="将克隆下来的仓库推送到 CODING"></a>将克隆下来的仓库推送到 CODING</h1><p>克隆完成后，将仓库推送到 CODING 上。<br>使用仓库页面提供的 URL。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-88df801b8ce464bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure></p>
+<p>推送所有的分支和对象，向coding推送时，需要添加参数 <code>--all</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd redis.git</span><br><span class="line"></span><br><span class="line">git push https://git.coding.net/jiong/redis.git --all</span><br></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-0798c1ce42580323.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>完成后，再执行推送所有的标签的命令，带参数 <code>--tag</code>。<br><code>git push https://git.coding.net/jiong/redis.git --tags</code></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-0e93b05fc67b503d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/1463937-effbbd70e7176326.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image" title="">
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
+<p>这样，整个仓库就全部导入到 CODING 中了。</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
+<li><a href="https://coding.net/help/doc/git/import.html" target="_blank" rel="noopener">如何将 git 仓库导入 CODING？</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-12-11T16:03:56.201Z" itemprop="dateUpdated">2018-12-12 00:03:56</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/12/11/如何将-Github-上的仓库导入-CODING/" target="_blank" rel="external">https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://lookphp.github.io">
+            <img src="/img/avatar.jpg" alt="lookphp">
+            lookphp
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/&title=《如何将 Github 上的仓库导入 CODING》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/&title=《如何将 Github 上的仓库导入 CODING》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何将 Github 上的仓库导入 CODING》 — LookPHP&url=https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/06/在-Oracle-中实现自增ID/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">在 Oracle 中实现自增ID</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpeg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpeg" data-alipay="/img/alipay.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>lookphp &copy; 2014 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/&title=《如何将 Github 上的仓库导入 CODING》 — LookPHP&pic=https://lookphp.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/&title=《如何将 Github 上的仓库导入 CODING》 — LookPHP&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何将 Github 上的仓库导入 CODING》 — LookPHP&url=https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/&via=https://lookphp.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://lookphp.github.io/2018/12/11/如何将-Github-上的仓库导入-CODING/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3a0Y4iMQwEwP3/n957PWkF0+3Et5xU84RgYFJBii3bX1/x9f3X9fP95M6f97+/M//NCxceHh7ewdJ/Xu/vefVp/pRks95vzcPT8fDw8NZ4ySH+/nV+Mp+c3vma8fDw8D6H1y69ZSQpNR4eHt7/zkveT1LwNonHw8PD+11em84mhYkWlnxrsdaCh4eHN8ldH1Lhz3m90t/Dw8PDO+6qn7S7klLC+6XnYeDlavHw8PAWeLMm1ix45Elwsh3FOvHw8PAWeO1oVHvc5ylyO5hVJ994eHh4l3jtkd0eyi0v38SjfwwPDw9vxJs1utpxgbY1dfJfvQwJeHh4eJd4+QE9GzJo+1O3hrrw8PDw9ngnKXL73aQsOxvnevksPDw8vDVefsSfJN95AGiLIC+peHh4eAu8PPPMl9IWF476dfm4AB4eHt4CbzZWlY8XzBpsbVMNDw8Pb5uXH7jnbbBzwGKtBQ8PD+9gAKstAbQbcbeYm68QDw8P7y4vbzLNWv550WFWPn4oSeDh4eEt89qCRTtekLfE8t95uB8PDw9vgZd/od2I2ShAO6AQrRMPDw/vEq8tg7ZDVHeHrupNwcPDw1vmbQ8WnIeHNn3Hw8PD+ze8WyFh1pOaJeIPQ1d4eHh4V3mzAYKT4adZuysvItcTE3h4eHgj3knS3J7AbUssH9uKoh8eHh7eVV5bQs0DRj5kkI9zDTt7eHh4eAu8ltTy8iLvrKqAh4eHt837Lq8knLRF4Vl6HW09Hh4e3gLvbinhJPGdlSHa5hweHh7eLV4SDE6O/vz322ZYPR+Bh4eHd5U36xzlJdpkQ2ex64GKh4eH95G8k8fPnlJsBx4eHt7H8NrSw62kuW6e4eHh4a3xzosFs/S6mHEYFYjx8PDwNnhtWpwHiTYMzFLqCxceHh5eyvsDyRZek2vllW8AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

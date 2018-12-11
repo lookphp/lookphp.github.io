@@ -20,20 +20,20 @@
     
     
     <meta name="keywords" content="Oracle,php">
-    <meta name="description" content="#适用环境  操作系统：Windows10 64位 PHPstudy集成环境  #安装过程  安装一：在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 &amp;quot;;extension=php_oci8.dll&amp;quot;这句话，将其前面的分号去掉，结果如下： 123extension=php_oci8.dll      ; Use with Oracle 10gR2 Ins">
+    <meta name="description" content="适用环境 操作系统：Windows10 64位 PHPstudy集成环境  安装过程安装一,配置文件开启扩展文件在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 &amp;quot;;extension=php_oci8.dll&amp;quot;这句话，将其前面的分号去掉，结果如下：123extension=php_oci8.dll      ; Use with Oracle 10gR2">
 <meta name="keywords" content="Oracle,php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php安装oci8扩展">
 <meta property="og:url" content="https://lookphp.github.io/2018/12/06/php安装oci8扩展/index.html">
 <meta property="og:site_name" content="LookPHP">
-<meta property="og:description" content="#适用环境  操作系统：Windows10 64位 PHPstudy集成环境  #安装过程  安装一：在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 &amp;quot;;extension=php_oci8.dll&amp;quot;这句话，将其前面的分号去掉，结果如下： 123extension=php_oci8.dll      ; Use with Oracle 10gR2 Ins">
+<meta property="og:description" content="适用环境 操作系统：Windows10 64位 PHPstudy集成环境  安装过程安装一,配置文件开启扩展文件在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 &amp;quot;;extension=php_oci8.dll&amp;quot;这句话，将其前面的分号去掉，结果如下：123extension=php_oci8.dll      ; Use with Oracle 10gR2">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1463937-2e0ea7e47be4776a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1463937-4f89f596d7e59476.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1463937-98604d409ab23074.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-12-06T15:41:08.128Z">
+<meta property="og:updated_time" content="2018-12-11T15:39:16.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php安装oci8扩展">
-<meta name="twitter:description" content="#适用环境  操作系统：Windows10 64位 PHPstudy集成环境  #安装过程  安装一：在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 &amp;quot;;extension=php_oci8.dll&amp;quot;这句话，将其前面的分号去掉，结果如下： 123extension=php_oci8.dll      ; Use with Oracle 10gR2 Ins">
+<meta name="twitter:description" content="适用环境 操作系统：Windows10 64位 PHPstudy集成环境  安装过程安装一,配置文件开启扩展文件在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 &amp;quot;;extension=php_oci8.dll&amp;quot;这句话，将其前面的分号去掉，结果如下：123extension=php_oci8.dll      ; Use with Oracle 10gR2">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1463937-2e0ea7e47be4776a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
         <link rel="alternate" type="application/atom+xml" title="LookPHP" href="/atom.xml">
@@ -171,6 +171,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#适用环境"><span class="post-toc-number">1.</span> <span class="post-toc-text">适用环境</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装过程"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装一-配置文件开启扩展文件"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">安装一,配置文件开启扩展文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装二：下载并安装客户端"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">安装二：下载并安装客户端</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置系统变量"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">配置系统变量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#根据Oracle服务器的配置，修改Instant-Client的配置"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">根据Oracle服务器的配置，修改Instant Client的配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用如下代码链接Oracle时报错，报错信息如下"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">使用如下代码链接Oracle时报错，报错信息如下</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通过上网查到可通过修改listener-ora文件解决第5步的错误"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">通过上网查到可通过修改listener.ora文件解决第5步的错误</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关掉Service和LISTENER，再启动Service和LISTENER"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">关掉Service和LISTENER，再启动Service和LISTENER</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
 
 <article id="post-php安装oci8扩展"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -191,28 +198,17 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>#适用环境</p>
-<ul>
+            <h1 id="适用环境"><a href="#适用环境" class="headerlink" title="适用环境"></a>适用环境</h1><ul>
 <li>操作系统：Windows10 64位</li>
 <li>PHPstudy集成环境</li>
 </ul>
-<p>#安装过程</p>
-<ol>
-<li><p><strong>安装一</strong>：在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 <code>&quot;;extension=php_oci8.dll&quot;</code>这句话，将其前面的分号去掉，结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">extension=php_oci8.dll      ; Use with Oracle 10gR2 Instant Client</span><br><span class="line">extension=php_oci8_11g.dll  ; Use with Oracle 11gR2 Instant Client</span><br><span class="line">extension=php_pdo_oci.dll</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>题外话，一般我们开启扩展支持，只需要在php.ini中打开扩展就可以，比如要连接oracle数据库，我们就只要打开 php_oci8.dll 和 php_oci8_11g.dll 就可以了。但是我们打开后，查看phpinfo()并没有开启，也没错误提示，这个问题就有点大，经过一番百度后，发现还需要安装客户端，所以这里我们还需要下载oracle的客户端，直接下载只有客户端支持库的。</p>
-</li>
-<li><p><strong>安装二</strong>：下载并安装客户端</p>
-<blockquote>
+<h1 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h1><h2 id="安装一-配置文件开启扩展文件"><a href="#安装一-配置文件开启扩展文件" class="headerlink" title="安装一,配置文件开启扩展文件"></a><strong>安装一,配置文件开启扩展文件</strong></h2><p>在phpstudy集成工具中打开PHP的配置文件php.ini 。找到 <code>&quot;;extension=php_oci8.dll&quot;</code>这句话，将其前面的分号去掉，结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">extension=php_oci8.dll      ; Use with Oracle 10gR2 Instant Client</span><br><span class="line">extension=php_oci8_11g.dll  ; Use with Oracle 11gR2 Instant Client</span><br><span class="line">extension=php_pdo_oci.dll</span><br></pre></td></tr></table></figure></p>
+<p>题外话，一般我们开启扩展支持，只需要在php.ini中打开扩展就可以。<br>比如要连接oracle数据库，我们就只要打开 php_oci8.dll 和 php_oci8_11g.dll 就可以了。但是我们打开后，查看phpinfo()并没有开启，也没错误提示，这个问题就有点大，经过一番百度后，发现还需要安装客户端，所以这里我们还需要下载oracle的客户端，直接下载只有客户端支持库的。</p>
+<h2 id="安装二：下载并安装客户端"><a href="#安装二：下载并安装客户端" class="headerlink" title="安装二：下载并安装客户端"></a><strong>安装二</strong>：下载并安装客户端</h2><blockquote>
 <p>下载地址：<br><a href="https://pan.baidu.com/s/1sYLcU3CslPrjZXJMUYf6XA" target="_blank" rel="noopener">32位链接</a>  密码: cp3v<br><a href="https://pan.baidu.com/s/1R9OmchJqJYqVUpN1Y9bJ4g" target="_blank" rel="noopener">64位链接</a>  密码: wdst</p>
 </blockquote>
-</li>
-</ol>
 <p><strong>注意：</strong><br>这里的32位，64位不是指的Windows操作系统，而是要根据你安装的PHP的位数，就好比今天我纠结了好久的为什么不行，然后注意到安装的是64位的客户端，按照系统看的。而PHP却是32位的（我是用的是集成环境 phpStudy），后更换成32位的客户端安装就真的可以了。附：<a href="https://www.jianshu.com/p/901ff18eb97a" target="_blank" rel="noopener">如何判断PHP是32位，还是64位？</a></p>
-<ol>
-<li><strong>配置系统变量</strong>：<br>将路径<code>D:\Program Files (x86)\Oracle\Instant Client\bin</code>添加到系统变量中。</li>
-</ol>
+<h2 id="配置系统变量"><a href="#配置系统变量" class="headerlink" title="配置系统变量"></a><strong>配置系统变量</strong></h2><p>将路径<code>D:\Program Files (x86)\Oracle\Instant Client\bin</code>添加到系统变量中。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -220,12 +216,11 @@
                 </div>
                 <div class="image-caption">配置环境变量.png</div>
             </figure>
-<ol>
-<li><strong>根据Oracle服务器的配置，修改Instant Client的配置</strong>：</li>
-</ol>
-<p>Oracle服务器的配置地址：D:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\tnsnames.ora</p>
-<p>tnsnames.ora文件内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># tnsnames.ora Network Configuration File: D:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\tnsnames.ora</span><br><span class="line"># Generated by Oracle configuration tools.</span><br><span class="line"></span><br><span class="line">LISTENER_ORCL =</span><br><span class="line">  (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ORACLR_CONNECTION_DATA =</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SID = CLRExtProc)</span><br><span class="line">      (PRESENTATION = RO)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">ORCL =</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVER = DEDICATED)</span><br><span class="line">      (SERVICE_NAME = orcl.16.22.64)</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure></p>
-<p>参照服务器的配置，修改Instant Client的配置：<br>Instant Client的地址：D:\Program Files (x86)\Oracle\Instant Client\network\admin\tnsnames.ora<br>tnsnames.ora文件内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># tnsnames.ora Network Configuration File.</span><br><span class="line"># Generated by Oracle configuration tools.</span><br><span class="line"></span><br><span class="line"># Sample:</span><br><span class="line">#DatabaseName =</span><br><span class="line">#  (DESCRIPTION =</span><br><span class="line">#    (ADDRESS_LIST =</span><br><span class="line">#      (ADDRESS = (PROTOCOL = TCP)(HOST = 127.0.0.1)(PORT = 1521))</span><br><span class="line">#    )</span><br><span class="line">#    (CONNECT_DATA =</span><br><span class="line">#      (SERVER = DEDICATED)</span><br><span class="line">#      (SERVICE_NAME = ServiceName)</span><br><span class="line">#      (INSTANCE_NAME = InstanceName)</span><br><span class="line">#    )</span><br><span class="line">#  )</span><br><span class="line"></span><br><span class="line"># Modify the following content to fit your own needs.</span><br><span class="line">ORCL=</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVER = DEDICATED)</span><br><span class="line">      (SERVICE_NAME = ORCL</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure></p>
+<h2 id="根据Oracle服务器的配置，修改Instant-Client的配置"><a href="#根据Oracle服务器的配置，修改Instant-Client的配置" class="headerlink" title="根据Oracle服务器的配置，修改Instant Client的配置"></a><strong>根据Oracle服务器的配置，修改Instant Client的配置</strong></h2><p>Oracle服务器的配置地址：<code>D:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\tnsnames.ora</code></p>
+<p>tnsnames.ora文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># tnsnames.ora Network Configuration File: D:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN\tnsnames.ora</span><br><span class="line"># Generated by Oracle configuration tools.</span><br><span class="line"></span><br><span class="line">LISTENER_ORCL =</span><br><span class="line">  (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ORACLR_CONNECTION_DATA =</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SID = CLRExtProc)</span><br><span class="line">      (PRESENTATION = RO)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">ORCL =</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVER = DEDICATED)</span><br><span class="line">      (SERVICE_NAME = orcl.16.22.64)</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+<p>参照服务器的配置，修改Instant Client的配置：<br>Instant Client的地址：<code>D:\Program Files (x86)\Oracle\Instant Client\network\admin\tnsnames.ora</code><br>tnsnames.ora文件内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># tnsnames.ora Network Configuration File.</span><br><span class="line"># Generated by Oracle configuration tools.</span><br><span class="line"></span><br><span class="line"># Sample:</span><br><span class="line">#DatabaseName =</span><br><span class="line">#  (DESCRIPTION =</span><br><span class="line">#    (ADDRESS_LIST =</span><br><span class="line">#      (ADDRESS = (PROTOCOL = TCP)(HOST = 127.0.0.1)(PORT = 1521))</span><br><span class="line">#    )</span><br><span class="line">#    (CONNECT_DATA =</span><br><span class="line">#      (SERVER = DEDICATED)</span><br><span class="line">#      (SERVICE_NAME = ServiceName)</span><br><span class="line">#      (INSTANCE_NAME = InstanceName)</span><br><span class="line">#    )</span><br><span class="line">#  )</span><br><span class="line"></span><br><span class="line"># Modify the following content to fit your own needs.</span><br><span class="line">ORCL=</span><br><span class="line">  (DESCRIPTION =</span><br><span class="line">    (ADDRESS_LIST =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line">    )</span><br><span class="line">    (CONNECT_DATA =</span><br><span class="line">      (SERVER = DEDICATED)</span><br><span class="line">      (SERVICE_NAME = ORCL</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
 <p>至此，打开phpinfo页面，查看oci8的相关扩展信息是否开启，如图。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -234,23 +229,19 @@
                 </div>
                 <div class="image-caption">php的oci8扩展信息.png</div>
             </figure>
-<p>6.<strong>使用如下代码链接Oracle时报错，报错信息如下</strong>:</p>
-<p>链接代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// Create connection to Oracle</span><br><span class="line"> $conn = oci_connect(&quot;数据库名称&quot;, &quot;数据库密码&quot;, &quot;//localhost/orcl&quot;);</span><br><span class="line"> if (!$conn) &#123;</span><br><span class="line">    $m = oci_error();</span><br><span class="line">    echo $m[&apos;message&apos;], &quot;\n&quot;;</span><br><span class="line">    exit;</span><br><span class="line"> &#125;</span><br><span class="line"> else &#123;</span><br><span class="line">   print &quot;Connected to Oracle!&quot;;</span><br><span class="line"> &#125;</span><br><span class="line">// // Close the Oracle connection</span><br><span class="line"> oci_close($conn);</span><br></pre></td></tr></table></figure></p>
-<p>错误码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Oracle 报错ORA-12514: TNS:listener does not currently know of service requested in connec</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li><strong>通过上网查到可通过修改listener.ora文件解决第6步的错误</strong>：<br>添加了一段在安装目录D:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN 下文件修改了加上一段复制的代码（灰色选中部分）:<figure class="image-bubble">
+<h2 id="使用如下代码链接Oracle时报错，报错信息如下"><a href="#使用如下代码链接Oracle时报错，报错信息如下" class="headerlink" title="使用如下代码链接Oracle时报错，报错信息如下"></a>使用如下代码链接Oracle时报错，报错信息如下</h2><p>链接代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// Create connection to Oracle</span><br><span class="line"> $conn = oci_connect(&quot;数据库名称&quot;, &quot;数据库密码&quot;, &quot;//localhost/orcl&quot;);</span><br><span class="line"> if (!$conn) &#123;</span><br><span class="line">    $m = oci_error();</span><br><span class="line">    echo $m[&apos;message&apos;], &quot;\n&quot;;</span><br><span class="line">    exit;</span><br><span class="line"> &#125;</span><br><span class="line"> else &#123;</span><br><span class="line">   print &quot;Connected to Oracle!&quot;;</span><br><span class="line"> &#125;</span><br><span class="line">// // Close the Oracle connection</span><br><span class="line"> oci_close($conn);</span><br></pre></td></tr></table></figure>
+<p>错误码：</p>
+<p><code>Oracle 报错ORA-12514: TNS:listener does not currently know of service requested in connec</code></p>
+<h2 id="通过上网查到可通过修改listener-ora文件解决第5步的错误"><a href="#通过上网查到可通过修改listener-ora文件解决第5步的错误" class="headerlink" title="通过上网查到可通过修改listener.ora文件解决第5步的错误"></a><strong>通过上网查到可通过修改listener.ora文件解决第5步的错误</strong></h2><p>添加了一段在安装目录D:\app\Administrator\product\11.2.0\dbhome_1\NETWORK\ADMIN 下文件修改了加上一段复制的代码（灰色选中部分）:<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://upload-images.jianshu.io/upload_images/1463937-98604d409ab23074.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="12514错误配置文件.png" title="">
                 </div>
                 <div class="image-caption">12514错误配置文件.png</div>
-            </figure>
-</li>
-</ol>
+            </figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SID_LIST_LISTENER =</span><br><span class="line">  (SID_LIST =</span><br><span class="line">    (SID_DESC =</span><br><span class="line">      (SID_NAME = CLRExtProc)</span><br><span class="line">      (ORACLE_HOME = D:\app\Administrator\product\11.2.0\dbhome_1)</span><br><span class="line">      (PROGRAM = extproc)</span><br><span class="line">      (ENVS = &quot;EXTPROC_DLLS=ONLY:D:\app\Administrator\product\11.2.0\dbhome_1\bin\oraclr11.dll&quot;)</span><br><span class="line">    )(SID_DESC =</span><br><span class="line">    (GLOBAL_DBNAME = ORCL)</span><br><span class="line">    (ORACLE_HOME = D:\app\Administrator\product\11.2.0\dbhome_1)</span><br><span class="line">    (SID_NAME = ORCL)</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
-<ol>
-<li>关掉Service和LISTENER，再启动Service和LISTENER。<br><strong>注意：</strong> 复制请留意到ORACLE_HOME =目录，复制目录一定是要本机文件目录，细节真的很重要！</li>
-</ol>
+<h2 id="关掉Service和LISTENER，再启动Service和LISTENER"><a href="#关掉Service和LISTENER，再启动Service和LISTENER" class="headerlink" title="关掉Service和LISTENER，再启动Service和LISTENER"></a>关掉Service和LISTENER，再启动Service和LISTENER</h2><p><strong>注意：</strong> 复制请留意到ORACLE_HOME =目录，复制目录一定是要本机文件目录，细节真的很重要！</p>
 <p>参考文档：<br><a href="http://www.oracle.com/technetwork/cn/articles/dsl/technote-php-instant-090922-zhs.html?" target="_blank" rel="noopener">在 Linux 和 Windows 上安装 PHP 和 Oracle Instant Client</a><br><a href="http://blog.csdn.net/wang_quan_li/article/details/70671247" target="_blank" rel="noopener">PHP 无法开启 OCI8 扩展原因</a><br><a href="http://blog.csdn.net/u010832551/article/details/51162133" target="_blank" rel="noopener">Windows PHP/phpStudy 连接 甲骨文Oracle 数据库 oci8</a><br><a href="http://blog.csdn.net/u010832551/article/details/51162133" target="_blank" rel="noopener">Oracle 报错ORA-12514: TNS:listener does not currently know of service requested in connec</a></p>
 
         </div>
@@ -260,7 +251,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-12-06T15:41:08.128Z" itemprop="dateUpdated">2018-12-06 23:41:08</time>
+    Last updated: <time datetime="2018-12-11T15:39:16.650Z" itemprop="dateUpdated">2018-12-11 23:39:16</time>
 </span><br>
 
 
